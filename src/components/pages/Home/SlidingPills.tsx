@@ -2,6 +2,8 @@
 
 import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
+import { BsGlobe2 } from "react-icons/bs";
+import { MdDone } from "react-icons/md";
 
 const ITEMS = [
   { label: "SSL Security", id: "ssl" },
@@ -11,7 +13,7 @@ const ITEMS = [
   { label: "Domain Protection", id: "domain" },
 ];
 
-const ITEM_HEIGHT = 64; // px
+const ITEM_HEIGHT = 52; // px — matches h-13 (52px)
 const VISIBLE_COUNT = 5;
 
 // To achieve infinite looping, we repeat the array 3 times
@@ -39,12 +41,23 @@ export function SlidingPills() {
 
   useEffect(() => {
     // When we reach near the end of the extended array, reset to the middle copy
+    // Wait for 1500ms (in the middle of the settled phase) to do the index swap invisibly
     if (activeIndex >= START_INDEX + ITEMS.length) {
       const resetTimeout = setTimeout(() => {
+        // 1. Disable transition first
         setIsTransitioning(false);
-        setActiveIndex((prev) => prev - ITEMS.length);
-      }, 800);
-      return () => clearTimeout(resetTimeout);
+
+        // 2. In the next frame tick (50ms), swap activeIndex to START_INDEX
+        // This guarantees the browser registers the transition-none state and snaps instantly without rewinding
+        timeoutRef.current = setTimeout(() => {
+          setActiveIndex(START_INDEX);
+        }, 50);
+      }, 1500);
+
+      return () => {
+        clearTimeout(resetTimeout);
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      };
     }
   }, [activeIndex]);
 
@@ -56,14 +69,36 @@ export function SlidingPills() {
   }, []);
 
   return (
-    <div className="relative h-[320px] w-[320px] overflow-hidden font-figtree select-none flex justify-center">
-      {/* Scrolling List Wrapper */}
-      <div
+    <div
+      className="relative h-92.5 w-[320px] overflow-hidden font-figtree select-none flex justify-center"
+      style={{
+        maskImage:
+          "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
+        WebkitMaskImage:
+          "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
+      }}
+    >
+      {/* Green Checkmark Badge (Single, static center position) */}
+      <span
         className={cn(
-          "flex flex-col gap-3 items-center w-full"
+          "absolute flex size-5 items-center justify-center rounded-full bg-emerald-500 text-white shadow-md transition-all duration-300 ease-out z-30",
+          !isTransitioning
+            ? "opacity-100 scale-100 pointer-events-auto"
+            : "opacity-0 scale-50 pointer-events-none",
         )}
         style={{
-          transform: `translateY(calc(128px - ${activeIndex * (ITEM_HEIGHT + 12)}px))`, // 128px centers the active item
+          top: "152px",
+          right: "60px",
+        }}
+      >
+        <MdDone className="size-3 text-white" />
+      </span>
+
+      {/* Scrolling List Wrapper */}
+      <div
+        className={cn("flex flex-col gap-3 items-center w-full")}
+        style={{
+          transform: `translateY(calc(159px - ${activeIndex * (ITEM_HEIGHT + 12)}px))`, // Centers the active item perfectly
           transitionProperty: isTransitioning ? "all" : "none",
           transitionDuration: isTransitioning ? "800ms" : "0ms",
           transitionTimingFunction: "cubic-bezier(0.34, 1.56, 0.64, 1)",
@@ -76,72 +111,44 @@ export function SlidingPills() {
           // Determine scale and opacity based on distance from active center
           let styleClass = "";
           if (isActive) {
-            styleClass = "bg-coral-500 text-white shadow-xl shadow-coral-500/25 scale-105 z-25 opacity-100";
+            styleClass =
+              "bg-coral-500 text-[#FEF8F6] text-[19px] font-medium leading-7 scale-102 z-25 opacity-100 shadow-xl shadow-coral-500/25";
           } else if (distance === 1) {
-            styleClass = "bg-white/95 text-zinc-700 border border-zinc-200/40 dark:bg-zinc-900/90 dark:border-zinc-800/40 dark:text-zinc-300 scale-95 opacity-70 z-20";
+            styleClass =
+              "bg-white/90 text-[#B23117] border border-[#F1EEEA] scale-95 opacity-70 z-20";
           } else {
-            styleClass = "bg-white/80 text-zinc-500 border border-zinc-200/20 dark:bg-zinc-950/80 dark:border-zinc-900/20 dark:text-zinc-500 scale-85 opacity-35 z-10";
+            styleClass =
+              "bg-white/70 text-[#B23117] border border-[#F1EEEA] scale-85 opacity-30 z-10";
           }
 
           return (
             <div
               key={`${item.id}-${idx}`}
               className={cn(
-                "relative flex h-[64px] w-[280px] items-center gap-3 rounded-full px-5 py-3 shrink-0",
-                styleClass
+                "relative flex h-13 w-50 items-center justify-center gap-3 rounded-full shrink-0",
+                styleClass,
               )}
               style={{
-                transitionProperty: "all",
-                transitionDuration: "800ms",
+                transitionProperty: isTransitioning ? "all" : "none",
+                transitionDuration: isTransitioning ? "800ms" : "0ms",
                 transitionTimingFunction: "cubic-bezier(0.34, 1.56, 0.64, 1)",
               }}
             >
               {/* Globe Icon */}
-              <div
+              <BsGlobe2
                 className={cn(
-                  "flex size-7 items-center justify-center rounded-full transition-colors duration-500",
-                  isActive ? "bg-white/20 text-white" : "bg-coral-50/50 text-coral-500 dark:bg-coral-950/20"
+                  "flex size-6 items-center justify-center rounded-full",
+                  isTransitioning
+                    ? "transition-colors duration-500"
+                    : "transition-none",
+                  isActive ? "text-white" : "text-coral-500",
                 )}
-              >
-                <svg className="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                  <circle cx="12" cy="12" r="10" strokeLinecap="round" strokeLinejoin="round" />
-                  <path
-                    d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
+              />
 
               {/* Text Label */}
               <span className="text-sm font-semibold tracking-wide whitespace-nowrap">
                 {item.label}
               </span>
-
-              {/* Green Checkmark Badge */}
-              <span
-                className={cn(
-                  "absolute -top-1 -right-1 flex size-5 items-center justify-center rounded-full bg-emerald-500 text-white shadow-md border-2 border-zinc-50 dark:border-black transition-all duration-300 ease-out",
-                  isActive && !isTransitioning
-                    ? "opacity-100 scale-100 pointer-events-auto"
-                    : "opacity-0 scale-50 pointer-events-none"
-                )}
-              >
-                <svg
-                  className="size-3"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="3"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-              </span>
-
             </div>
           );
         })}
