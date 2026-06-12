@@ -14,7 +14,6 @@ const ITEMS = [
 ];
 
 const ITEM_HEIGHT = 52; // px — matches h-13 (52px)
-const VISIBLE_COUNT = 5;
 
 // To achieve infinite looping, we repeat the array 3 times
 const EXTENDED_ITEMS = [...ITEMS, ...ITEMS, ...ITEMS];

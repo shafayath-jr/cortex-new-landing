@@ -22,7 +22,7 @@ export function Footer() {
               width={177}
               height={33}
               priority
-              className="h-[33px] w-auto"
+              className="h-10 w-auto"
             />
           </Link>
 

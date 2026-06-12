@@ -102,7 +102,7 @@ export function Hero() {
           </div>
 
           {/* Dynamic Prompt Box */}
-          <div className="font-figtree mt-5 w-full max-w-120">
+          <div className="font-figtree mt-5 w-full max-w-[343px] sm:max-w-[437px]">
             <div className="flex w-full items-center justify-between gap-3 rounded-full border border-[#DCD2C5] bg-white p-2 shadow-sm backdrop-blur-sm">
               <div className="flex items-center gap-3 overflow-hidden">
                 {/* Sparkles Icon */}
