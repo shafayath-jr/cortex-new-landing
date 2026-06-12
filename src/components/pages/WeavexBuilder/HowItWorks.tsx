@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 const STEPS = [
   {
@@ -7,9 +8,7 @@ const STEPS = [
     title: "Describe your business in a sentence.",
     description:
       "Just type what you do — \"a bakery\", \"a yoga studio\". That's your starting point.",
-    illustration: "/images/weavex/tst.svg",
-    illustrationWidth: 272,
-    illustrationHeight: 216,
+    lottie: "/lottie/weavex/website-builder/lottie.json",
     cardAlign: "items-center",
   },
   {
@@ -17,9 +16,7 @@ const STEPS = [
     badge: "2nd Step",
     title: "Weavex builds a complete first draft.",
     description: "Pages, words, layout and images — ready in minutes. No blank page.",
-    illustration: "/images/weavex/how-it-works/step-2-build.svg",
-    illustrationWidth: 296,
-    illustrationHeight: 169,
+    lottie: "/lottie/weavex/website-builder/lottie-2.json",
     cardAlign: "items-center",
   },
   {
@@ -27,9 +24,7 @@ const STEPS = [
     badge: "3rd Step",
     title: "Edit anything by clicking it.",
     description: "Swap photos, change words, add pages. No code, nothing to break.",
-    illustration: "/images/weavex/how-it-works/step-3-edit.svg",
-    illustrationWidth: 306,
-    illustrationHeight: 204,
+    lottie: "/lottie/weavex/website-builder/lottie-3.json",
     cardAlign: "items-start",
   },
   {
@@ -37,9 +32,7 @@ const STEPS = [
     badge: "4th Step",
     title: "Publish. You're live with security built in.",
     description: "Your site goes live instantly, free, with SSL included automatically.",
-    illustration: "/images/weavex/how-it-works/step-4-publish.svg",
-    illustrationWidth: 340,
-    illustrationHeight: 200,
+    lottie: "/lottie/weavex/website-builder/lottie-4.json",
     cardAlign: "items-center",
   },
 ] as const;
@@ -133,12 +126,12 @@ export function  HowItWorks() {
                     </div>
 
                     <div className="mx-auto shrink-0 lg:mx-0">
-                      <Image
-                        src={step.illustration}
-                        alt={step.title}
-                        width={step.illustrationWidth}
-                        height={step.illustrationHeight}
-                        className="h-auto w-full max-w-[272px] lg:max-w-none"
+                      <DotLottieReact
+                        src={step.lottie}
+                        loop
+                        autoplay
+                        className="w-full max-w-68 lg:max-w-85"
+                        style={{ background: "transparent" }}
                       />
                     </div>
                   </div>
