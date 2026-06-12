@@ -7,7 +7,7 @@ const STEPS = [
     title: "Describe your business in a sentence.",
     description:
       "Just type what you do — \"a bakery\", \"a yoga studio\". That's your starting point.",
-    illustration: "/images/weavex/how-it-works/step-1-describe.svg",
+    illustration: "/images/weavex/tst.svg",
     illustrationWidth: 272,
     illustrationHeight: 216,
     cardAlign: "items-center",

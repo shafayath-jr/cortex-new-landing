@@ -1,16 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
-
-const TYPING_PHRASES = [
-  "my coffee shop",
-  "my portfolio",
-  "my local bakery",
-  "my consulting business",
-  "my clothing brand",
-];
+import { BuilderAnimation } from "./BuilderAnimation";
 
 function ArrowIcon({ className }: { className?: string }) {
   return (
@@ -27,43 +18,6 @@ function ArrowIcon({ className }: { className?: string }) {
 }
 
 export function Hero() {
-  const [typedText, setTypedText] = useState("");
-  const [phraseIdx, setPhraseIdx] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [typingSpeed, setTypingSpeed] = useState(100);
-
-  useEffect(() => {
-    let timer: NodeJS.Timeout;
-
-    const handleTyping = () => {
-      const fullPhrase = TYPING_PHRASES[phraseIdx];
-
-      if (!isDeleting) {
-        setTypedText(fullPhrase.slice(0, typedText.length + 1));
-        setTypingSpeed(100);
-
-        if (typedText.length === fullPhrase.length) {
-          timer = setTimeout(() => setIsDeleting(true), 2000);
-          return;
-        }
-      } else {
-        setTypedText(fullPhrase.slice(0, typedText.length - 1));
-        setTypingSpeed(50);
-
-        if (typedText.length === 0) {
-          setIsDeleting(false);
-          setPhraseIdx((prev) => (prev + 1) % TYPING_PHRASES.length);
-          timer = setTimeout(() => {}, 500);
-          return;
-        }
-      }
-
-      timer = setTimeout(handleTyping, typingSpeed);
-    };
-
-    timer = setTimeout(handleTyping, typingSpeed);
-    return () => clearTimeout(timer);
-  }, [typedText, isDeleting, phraseIdx, typingSpeed]);
 
   return (
     <section className="relative w-full overflow-hidden bg-[#fef8f6] py-16 md:py-24 lg:py-[120px]">
@@ -115,48 +69,9 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Right — prompt bar + window mockup */}
-        <div className="relative flex w-full max-w-[520px] flex-col items-center gap-6 lg:max-w-[473px] lg:items-end">
-          <div className="w-full rounded-full border border-[#dcd2c5] bg-white p-2 shadow-sm">
-            <div className="flex items-center justify-between gap-3 pl-1">
-              <div className="flex min-w-0 flex-1 items-center gap-2 overflow-hidden">
-                <div className="flex size-12 shrink-0 items-center justify-center rounded-[24px] bg-coral-500 text-white">
-                  <svg className="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M9.813 15.904L9 21l-.813-5.096L3 15l5.096-.813L9 9l.813 5.096L15 15l-5.187.904zM18 5.25L17.25 8l-.75-2.75L13.75 4.5l2.75-.75L17.25 1l.75 2.75 2.75.75-2.75.75z"
-                    />
-                  </svg>
-                </div>
-
-                <div className="min-w-0 font-figtree text-base leading-normal">
-                  <span className="text-[#9c9089]">Build me a website for </span>
-                  <span className="font-medium text-[#2e0d05]">{typedText}</span>
-                  <span className="font-semibold text-coral-500">|</span>
-                </div>
-              </div>
-
-              <button
-                type="button"
-                className="flex size-12 shrink-0 items-center justify-center rounded-[24px] border border-[#2e0d05] bg-white text-[#2e0d05] transition-colors hover:bg-[#fef8f6] active:scale-95"
-                aria-label="Submit website generation prompt"
-              >
-                <ArrowIcon className="size-6" />
-              </button>
-            </div>
-          </div>
-
-          <div className="relative w-full overflow-hidden rounded-[20px] bg-white shadow-sm">
-            <Image
-              src="/images/weavex/hero-window.png"
-              alt="Weavex website builder preview"
-              width={947}
-              height={638}
-              priority
-              className="h-auto w-full"
-            />
-          </div>
+        {/* Right — animated builder loop */}
+        <div className="relative w-full max-w-[520px] lg:max-w-[473px]">
+          <BuilderAnimation />
         </div>
       </div>
     </section>
