@@ -141,6 +141,7 @@ export function Hero() {
           alt="Cortex Grip Workspace workflow illustration"
           fill
           priority
+          sizes="(max-width: 1024px) 100vw, 620px"
           className="object-contain"
         />
       </div>
