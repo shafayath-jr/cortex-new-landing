@@ -7,7 +7,7 @@ const STEPS = [
     title: "Describe your business in a sentence.",
     description:
       "Just type what you do — \"a bakery\", \"a yoga studio\". That's your starting point.",
-    illustration: "/images/weavex/tst.svg",
+    illustration: "/images/weavex/how-it-works/step-1-describe.svg",
     illustrationWidth: 272,
     illustrationHeight: 216,
     cardAlign: "items-center",
@@ -63,7 +63,7 @@ function StepNumber({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function  HowItWorks() {
+export function HowItWorks() {
   return (
     <section className="relative w-full overflow-hidden bg-white py-16 md:py-20">
       <div className="mx-auto flex max-w-7xl flex-col items-center gap-12 px-6 sm:px-8 lg:gap-[60px]">
