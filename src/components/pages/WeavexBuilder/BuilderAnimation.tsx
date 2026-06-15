@@ -55,20 +55,21 @@ const PHASES: Phase[] = [
 
 type Pos = { x: number; y: number };
 
-// cursor-to-webpage targets the orange hero card (top-left block), safely within its bounds
+// prompt bar is vertically centered at y≈165 in the 330px container
+// "Learn more" button in row-2 right card ≈ x=390, y=206
 const CURSOR_POS: Record<Phase, Pos> = {
-  prompt: { x: 305, y: 28 },
-  "cursor-to-arrow": { x: 436, y: 28 },
-  "arrow-click": { x: 436, y: 28 },
-  "prompt-exit": { x: 436, y: 28 },
-  "theme-enter": { x: 436, y: 60 },
+  prompt: { x: 305, y: 165 },
+  "cursor-to-arrow": { x: 436, y: 165 },
+  "arrow-click": { x: 436, y: 165 },
+  "prompt-exit": { x: 436, y: 165 },
+  "theme-enter": { x: 436, y: 80 },
   "cursor-to-square": { x: 88, y: 172 },
   "square-click": { x: 88, y: 172 },
   "theme-exit": { x: 88, y: 172 },
   "webpage-enter": { x: 88, y: 172 },
-  "cursor-to-webpage": { x: 130, y: 95 },
-  "webpage-click": { x: 130, y: 95 },
-  "webpage-exit": { x: 130, y: 95 },
+  "cursor-to-webpage": { x: 388, y: 295 },
+  "webpage-click": { x: 388, y: 295 },
+  "webpage-exit": { x: 388, y: 295 },
 };
 
 function blockStyle(fromLeft: boolean, delay: number, visible: boolean): React.CSSProperties {
@@ -123,15 +124,21 @@ export function BuilderAnimation() {
 
   const cursorVisible = phase !== "prompt";
   const clicking = arrowClicked || squareClicked || phase === "webpage-click";
+  const row2RightHovered  = ["cursor-to-webpage", "webpage-click"].includes(phase);
+  const row2RightClicking = phase === "webpage-click";
 
   const pos = CURSOR_POS[phase];
 
+  // vertically centered — translateY(-50%) keeps bar at mid-height, scaleX handles squish
   const promptPanelStyle: React.CSSProperties = {
     position: "absolute",
-    inset: 0,
-    bottom: "auto",
+    left: 0,
+    right: 0,
+    top: "50%",
     transformOrigin: "center center",
-    transform: promptVisible ? "scaleX(1)" : "scaleX(0)",
+    transform: promptVisible
+      ? "translateY(-50%) scaleX(1)"
+      : "translateY(-50%) scaleX(0)",
     opacity: promptActive ? 1 : 0,
     transition: "transform 420ms ease-in-out, opacity 300ms ease",
     pointerEvents: "none",
@@ -342,11 +349,28 @@ export function BuilderAnimation() {
                 </div>
               </div>
               <div className="flex-1" style={blockStyle(true, 270, blocksIn)}>
-                <div className="rounded-xl bg-[#e8490f] p-2.5">
+                <div
+                  className="rounded-xl p-2.5"
+                  style={{
+                    background: row2RightHovered ? "#d43e0a" : "#e8490f",
+                    transition: "background 200ms ease",
+                  }}
+                >
                   <div className="mb-1 h-1.5 w-10 rounded-full bg-white/60" />
                   <div className="mb-1 h-1.5 w-full rounded-full bg-white/40" />
                   <div className="mb-2 h-1.5 w-3/4 rounded-full bg-white/40" />
-                  <div className="rounded-full border border-white px-2 py-0.5 text-center font-figtree text-[8px] text-white">Learn more</div>
+                  <div
+                    className="rounded-full border border-white px-2 py-0.5 text-center font-figtree text-[8px] text-white"
+                    style={{
+                      background: row2RightClicking ? "rgba(255,255,255,0.35)" : row2RightHovered ? "rgba(255,255,255,0.15)" : "transparent",
+                      transform: row2RightClicking ? "scale(0.88)" : "scale(1)",
+                      transition: "background 150ms ease, transform 100ms ease",
+                      display: "inline-block",
+                      width: "100%",
+                    }}
+                  >
+                    Learn more
+                  </div>
                 </div>
               </div>
             </div>

@@ -60,7 +60,7 @@ export function FaqSection() {
 
         {/* Header */}
         <div className="flex flex-col items-center gap-4 text-center">
-          <span className="inline-flex items-center rounded-[18px] bg-linear-to-r from-coral-500/0 from-42% to-coral-500/15 to-88% px-3.5 py-2 font-figtree text-lg font-semibold text-coral-500">
+          <span className="inline-flex items-center rounded-[18px] bg-linear-to-l from-coral-500/0 from-42% to-coral-500/15 to-88% px-3.5 py-2 font-figtree text-lg font-semibold text-coral-500">
             FAQ&apos;s
           </span>
           <h2 className="font-fraunces text-[38px] font-bold leading-normal text-[#221c19] sm:text-[42px]">
@@ -70,7 +70,7 @@ export function FaqSection() {
         </div>
 
         {/* Accordion list */}
-        <div className="w-full max-w-[876px]">
+        <div className="w-full max-w-7xl">
           {FAQS.map((faq, idx) => {
             const isOpen = openId === faq.id;
             return (

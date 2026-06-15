@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useRef } from "react";
 
 const STEPS = [
   {
@@ -63,10 +66,108 @@ function StepNumber({ children }: { children: React.ReactNode }) {
   );
 }
 
+function useDrawOnScroll() {
+  const pathRef = useRef<SVGPathElement>(null);
+  const headRef = useRef<SVGPolygonElement>(null);
+
+  useEffect(() => {
+    const path = pathRef.current;
+    const head = headRef.current;
+    if (!path || !head) return;
+
+    const length = path.getTotalLength();
+    path.style.strokeDasharray = String(length);
+    path.style.strokeDashoffset = String(length);
+    head.style.opacity = "0";
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          path.style.transition = "stroke-dashoffset 1.2s cubic-bezier(0.4,0,0.2,1)";
+          path.style.strokeDashoffset = "0";
+          head.style.transition = "opacity 0.3s ease 1.1s";
+          head.style.opacity = "1";
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(path);
+    return () => observer.disconnect();
+  }, []);
+
+  return { pathRef, headRef };
+}
+
+// Arrow curving from top-right down-left, arrowhead at bottom (used on left side)
+function ArrowEntry({ className }: { className?: string }) {
+  const { pathRef, headRef } = useDrawOnScroll();
+
+  return (
+    <svg
+      viewBox="0 0 161 305"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      aria-hidden
+      overflow="visible"
+    >
+      {/* Centerline: from top-right (159,2) curving left/down to arrowhead back (127,281) */}
+      <path
+        ref={pathRef}
+        d="M 159 8 C 70 40 -20 160 127 281"
+        fill="none"
+        stroke="#F26B45"
+        strokeWidth="4"
+        strokeLinecap="round"
+      />
+      {/* Arrowhead aligned to path tangent at (127,281): direction ≈43.7° right-down */}
+      <polygon
+        ref={headRef}
+        points="122,287 133,275 140,294"
+        fill="#F26B45"
+      />
+    </svg>
+  );
+}
+
+// Arrow curving from bottom-right up-left to top (used on right side, applied with rotate-180)
+// After rotation: visually draws top→bottom, arrowhead appears at bottom pointing down
+function ArrowRight({ className }: { className?: string }) {
+  const { pathRef, headRef } = useDrawOnScroll();
+
+  return (
+    <svg
+      viewBox="0 0 212 363"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      aria-hidden
+      overflow="visible"
+    >
+      {/* Single smooth cubic matching the original S-curve (bows left to x≈-8 at midpoint) */}
+      <path
+        ref={pathRef}
+        d="M 212 362 C -20 320 -20 90 142 23"
+        fill="none"
+        stroke="#F26B45"
+        strokeWidth="4"
+        strokeLinecap="round"
+      />
+      {/* Arrowhead aligned to path tangent at (142,23): direction ≈-9.9° right-up in SVG (left-down after rotate-180) */}
+      <polygon
+        ref={headRef}
+        points="141,31 143,15 160,20"
+        fill="#F26B45"
+      />
+    </svg>
+  );
+}
+
 export function HowItWorks() {
   return (
     <section className="relative w-full overflow-hidden bg-white py-16 md:py-20">
-      <div className="mx-auto flex max-w-7xl flex-col items-center gap-12 px-6 sm:px-8 lg:gap-[60px]">
+      <div className="mx-auto flex max-w-7xl flex-col items-center gap-12 px-6 sm:px-8 lg:gap-15">
         {/* Header */}
         <div className="flex flex-col items-center gap-4 text-center">
           <StepBadge>How it works</StepBadge>
@@ -77,40 +178,12 @@ export function HowItWorks() {
         </div>
 
         {/* Steps timeline */}
-        <div className="relative w-full max-w-[806px]">
+        <div className="relative w-full max-w-201.5">
           {/* Connector arrows — desktop only */}
-          <Image
-            src="/images/weavex/how-it-works/arrow-entry.svg"
-            alt=""
-            width={155}
-            height={305}
-            aria-hidden
-            className="pointer-events-none absolute -left-24 top-10 hidden w-[120px] lg:block xl:-left-48 xl:w-[155px]"
-          />
-          <Image
-            src="/images/weavex/how-it-works/arrow-right.svg"
-            alt=""
-            width={155}
-            height={363}
-            aria-hidden
-            className="pointer-events-none absolute -right-20 top-[18%] hidden w-[150px] lg:block xl:-right-48 xl:w-[212px] rotate-180"
-          />
-            <Image
-            src="/images/weavex/how-it-works/arrow-entry.svg"
-            alt=""
-            width={155}
-            height={305}
-            aria-hidden
-            className="pointer-events-none absolute -left-24 top-[44%] hidden w-[120px] lg:block xl:-left-48 xl:w-[155px]"
-          />
-          <Image
-            src="/images/weavex/how-it-works/arrow-right.svg"
-            alt=""
-            width={212}
-            height={363}
-            aria-hidden
-            className="pointer-events-none absolute -right-20 top-[68%] hidden w-[150px] lg:block xl:-right-48 xl:w-[212px] rotate-180"
-          />
+          <ArrowEntry className="pointer-events-none absolute -left-24 top-10 hidden w-30 lg:block xl:-left-48 xl:w-38.75" />
+          <ArrowRight className="pointer-events-none absolute -right-20 top-[18%] hidden w-37.5 lg:block xl:-right-48 xl:w-53 rotate-180" />
+          <ArrowEntry className="pointer-events-none absolute -left-24 top-[44%] hidden w-30 lg:block xl:-left-48 xl:w-38.75" />
+          <ArrowRight className="pointer-events-none absolute -right-20 top-[68%] hidden w-37.5 lg:block xl:-right-48 xl:w-53 rotate-180" />
 
           <div className="flex flex-col gap-14 lg:gap-[70px]">
             {STEPS.map((step) => (

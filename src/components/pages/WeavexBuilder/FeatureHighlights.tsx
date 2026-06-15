@@ -69,7 +69,7 @@ export function FeatureHighlights() {
       <div className="relative mx-auto flex max-w-7xl flex-col items-center gap-8 px-6 sm:px-8 lg:gap-[32px]">
         {/* Header */}
         <div className="flex flex-col items-center gap-4 text-center">
-          <span className="inline-flex items-center rounded-[18px] bg-linear-to-r from-coral-500/0 from-42% to-coral-500/15 to-88% px-3.5 py-2 font-figtree text-lg font-semibold text-coral-500">
+          <span className="inline-flex items-center rounded-[18px] bg-linear-to-l from-coral-500/0 from-42% to-coral-500/15 to-88% px-3.5 py-2 font-figtree text-lg font-semibold text-coral-500">
             Feature Highlights
           </span>
           <h2 className="font-fraunces text-4xl font-bold leading-normal text-[#221c19] sm:text-5xl lg:text-[48px]">
