@@ -1,6 +1,8 @@
+import SmoothScroll from "@/components/providers/SmoothScroll";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Figtree, Fraunces } from "next/font/google";
+import "lenis/dist/lenis.css";
 import "./globals.css";
 
 const figtree = Figtree({
@@ -35,7 +37,9 @@ export default function RootLayout({
         fraunces.variable,
       )}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <SmoothScroll>{children}</SmoothScroll>
+      </body>
     </html>
   );
 }
