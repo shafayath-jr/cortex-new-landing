@@ -1,4 +1,6 @@
 import { DomainsHero } from "@/components/pages/Domains/Hero";
+import { WhyItMatters } from "@/components/pages/Domains/WhyItMatters";
+import { EndingsStrip } from "@/components/pages/Domains/EndingsStrip";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,5 +10,11 @@ export const metadata: Metadata = {
 };
 
 export default function DomainsPage() {
-  return <DomainsHero />;
+  return (
+    <>
+      <DomainsHero />
+      <WhyItMatters />
+      <EndingsStrip />
+    </>
+  );
 }
