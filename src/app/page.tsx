@@ -2,6 +2,7 @@ import { Hero } from "@/components/pages/Home/Hero";
 import { HowItWorks } from "@/components/pages/Home/HowItWorks";
 import { NameChecker } from "@/components/pages/Home/NameChecker";
 import { OurProducts } from "@/components/pages/Home/OurProducts";
+import { Stats } from "@/components/pages/Home/Stats";
 import { WhyCortex } from "@/components/pages/Home/WhyCortex";
 import { Footer } from "@/components/shared/Footer";
 import { Navbar } from "@/components/shared/Navbar";
@@ -16,6 +17,7 @@ export default function Home() {
         <OurProducts />
         <HowItWorks />
         <WhyCortex />
+        <Stats />
       </main>
       <Footer />
     </div>
