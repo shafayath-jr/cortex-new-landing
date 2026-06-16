@@ -21,8 +21,40 @@ function SocialNetworkIllustration() {
     { cx: 142, cy: 232 },
   ];
 
+  // entry delay, float-start delay (after entry finishes ~0.8s)
+  const iconAnim = [
+    { entry: "0.2s", float: "1.0s" },
+    { entry: "0.35s", float: "1.15s" },
+    { entry: "0.5s", float: "1.3s" },
+    { entry: "0.65s", float: "1.45s" },
+    { entry: "0.8s", float: "1.6s" },
+    { entry: "0.95s", float: "1.75s" },
+  ];
+  const dotAnim = [
+    { entry: "0.6s", pulse: "1.4s" },
+    { entry: "0.75s", pulse: "1.55s" },
+    { entry: "0.9s", pulse: "1.7s" },
+    { entry: "1.05s", pulse: "1.85s" },
+    { entry: "1.2s", pulse: "2.0s" },
+    { entry: "1.35s", pulse: "2.15s" },
+  ];
+
   return (
     <div className="relative h-[464px] w-[512px] shrink-0">
+      <style>{`
+        @keyframes spin-slow    { from { transform: rotate(0deg); }   to { transform: rotate(360deg); } }
+        @keyframes spin-rev     { from { transform: rotate(0deg); }   to { transform: rotate(-360deg); } }
+        @keyframes ring-entry   { from { opacity: 0; transform: scale(0.7); } to { opacity: 1; transform: scale(1); } }
+        @keyframes icon-entry   { from { opacity: 0; transform: translateY(14px) scale(0.8); } to { opacity: 1; transform: translateY(0px) scale(1); } }
+        @keyframes icon-float   { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-7px); } }
+        @keyframes dot-entry    { from { opacity: 0; transform: scale(0); } to { opacity: 0.45; transform: scale(1); } }
+        @keyframes dot-pulse    { 0%,100% { opacity: 0.45; } 50% { opacity: 0.9; } }
+        @keyframes center-entry { from { opacity: 0; transform: scale(0.6); } to { opacity: 1; transform: scale(1); } }
+        @keyframes center-pulse { 0%,100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(242,78,41,0); }
+                                   50% { transform: scale(1.04); box-shadow: 0 0 0 12px rgba(242,78,41,0.12); } }
+        @keyframes lines-entry  { from { opacity: 0; } to { opacity: 1; } }
+      `}</style>
+
       {/* SVG: rings + connection lines + dots */}
       <svg
         className="absolute inset-0 pointer-events-none"
@@ -32,10 +64,16 @@ function SocialNetworkIllustration() {
         fill="none"
         aria-hidden
       >
-        {/* Concentric rings */}
-        <circle cx="256" cy="230" r="210" stroke="#f24e29" strokeWidth="1" strokeOpacity="0.12" strokeDasharray="4 7" />
-        <circle cx="256" cy="230" r="164" stroke="#f24e29" strokeWidth="1" strokeOpacity="0.18" strokeDasharray="4 6" />
-        <circle cx="256" cy="230" r="109.5" stroke="#f24e29" strokeWidth="1" strokeOpacity="0.22" strokeDasharray="4 5" />
+        {/* Concentric rings — entry fade+scale then continuous spin */}
+        <g style={{ transformOrigin: "256px 230px", animation: "ring-entry 0.7s ease-out 0.1s both, spin-slow 18s linear 0.8s infinite" }}>
+          <circle cx="256" cy="230" r="210" stroke="#f24e29" strokeWidth="1" strokeOpacity="0.12" strokeDasharray="4 7" />
+        </g>
+        <g style={{ transformOrigin: "256px 230px", animation: "ring-entry 0.7s ease-out 0.2s both, spin-rev 13s linear 0.9s infinite" }}>
+          <circle cx="256" cy="230" r="164" stroke="#f24e29" strokeWidth="1" strokeOpacity="0.18" strokeDasharray="4 6" />
+        </g>
+        <g style={{ transformOrigin: "256px 230px", animation: "ring-entry 0.7s ease-out 0.3s both, spin-slow 9s linear 1.0s infinite" }}>
+          <circle cx="256" cy="230" r="109.5" stroke="#f24e29" strokeWidth="1" strokeOpacity="0.22" strokeDasharray="4 5" />
+        </g>
 
         {/* Connection lines */}
         {ICONS.map((icon, i) => (
@@ -50,22 +88,25 @@ function SocialNetworkIllustration() {
           />
         ))}
 
-        {/* Dot nodes on lines */}
+        {/* Dot nodes on lines — entry then pulse */}
         {DOTS.map((d, i) => (
-          <circle key={i} cx={d.cx} cy={d.cy} r="7" fill="#ef9981" fillOpacity="0.45" />
+          <circle
+            key={i} cx={d.cx} cy={d.cy} r="7"
+            fill="#ef9981" fillOpacity="0.45"
+            style={{ animation: `dot-entry 0.5s ease-out ${dotAnim[i].entry} both, dot-pulse 2.4s ease-in-out ${dotAnim[i].pulse} infinite` }}
+          />
         ))}
       </svg>
 
-      {/* Center icon */}
+      {/* Center icon — entry then pulse */}
       <div
         className="absolute flex items-center justify-center rounded-[59.5px]"
-        style={{ left: 197, top: 178, width: 119, height: 119, background: "rgba(239,153,129,0.3)" }}
+        style={{ left: 197, top: 178, width: 119, height: 119, background: "rgba(239,153,129,0.3)", animation: "center-entry 0.6s ease-out 0.1s both, center-pulse 3s ease-in-out 0.7s infinite" }}
       >
         <div
           className="flex items-center justify-center rounded-[51.5px]"
           style={{ width: 103, height: 103, background: "#f24e29" }}
         >
-          {/* Routes / network icon */}
           <svg width="46" height="46" viewBox="0 0 46 46" fill="none">
             <circle cx="12" cy="12" r="5" fill="white" />
             <circle cx="34" cy="34" r="5" fill="white" />
@@ -79,7 +120,7 @@ function SocialNetworkIllustration() {
       {/* Instagram */}
       <div
         className="absolute flex items-center justify-center rounded-[43px]"
-        style={{ left: 70, top: 46, width: 86, height: 86, background: "rgba(239,153,129,0.3)" }}
+        style={{ left: 70, top: 46, width: 86, height: 86, background: "rgba(239,153,129,0.3)", animation: `icon-entry 0.6s ease-out ${iconAnim[0].entry} both, icon-float 3.5s ease-in-out ${iconAnim[0].float} infinite` }}
       >
         <div className="flex items-center justify-center rounded-[37px]" style={{ width: 74, height: 74, background: "#e10202" }}>
           <svg viewBox="0 0 24 24" fill="white" width="30" height="30">
@@ -91,7 +132,7 @@ function SocialNetworkIllustration() {
       {/* X / Twitter */}
       <div
         className="absolute flex items-center justify-center rounded-[41px]"
-        style={{ left: 315, top: 10, width: 82, height: 82, background: "rgba(35,11,4,0.3)" }}
+        style={{ left: 315, top: 10, width: 82, height: 82, background: "rgba(35,11,4,0.3)", animation: `icon-entry 0.6s ease-out ${iconAnim[1].entry} both, icon-float 3.5s ease-in-out ${iconAnim[1].float} infinite` }}
       >
         <div className="flex items-center justify-center rounded-[35px]" style={{ width: 71, height: 71, background: "#2e0d05" }}>
           <svg viewBox="0 0 24 24" fill="white" width="26" height="26">
@@ -103,7 +144,7 @@ function SocialNetworkIllustration() {
       {/* Facebook */}
       <div
         className="absolute flex items-center justify-center rounded-[56px]"
-        style={{ left: 6, top: 192, width: 86, height: 86, background: "rgba(24,119,242,0.1)" }}
+        style={{ left: 6, top: 192, width: 86, height: 86, background: "rgba(24,119,242,0.1)", animation: `icon-entry 0.6s ease-out ${iconAnim[2].entry} both, icon-float 3.5s ease-in-out ${iconAnim[2].float} infinite` }}
       >
         <div className="flex items-center justify-center rounded-[56px]" style={{ width: 65, height: 66, background: "#1877f2" }}>
           <span className="font-bold text-white" style={{ fontSize: 34, fontFamily: "Inter, sans-serif", lineHeight: 1 }}>f</span>
@@ -113,7 +154,7 @@ function SocialNetworkIllustration() {
       {/* Google */}
       <div
         className="absolute flex items-center justify-center rounded-[46px]"
-        style={{ left: 420, top: 192, width: 92, height: 92, background: "rgba(235,228,218,0.6)" }}
+        style={{ left: 420, top: 192, width: 92, height: 92, background: "rgba(235,228,218,0.6)", animation: `icon-entry 0.6s ease-out ${iconAnim[3].entry} both, icon-float 3.5s ease-in-out ${iconAnim[3].float} infinite` }}
       >
         <div className="flex items-center justify-center rounded-[40px]" style={{ width: 80, height: 80, background: "#faf6ef" }}>
           <svg viewBox="0 0 24 24" width="36" height="36">
@@ -128,7 +169,7 @@ function SocialNetworkIllustration() {
       {/* LinkedIn */}
       <div
         className="absolute flex items-center justify-center rounded-[112px]"
-        style={{ left: 116, top: 372, width: 86, height: 86, background: "rgba(10,102,194,0.1)" }}
+        style={{ left: 116, top: 372, width: 86, height: 86, background: "rgba(10,102,194,0.1)", animation: `icon-entry 0.6s ease-out ${iconAnim[4].entry} both, icon-float 3.5s ease-in-out ${iconAnim[4].float} infinite` }}
       >
         <div className="flex items-center justify-center rounded-[47px]" style={{ width: 69, height: 69, background: "#0a66c2" }}>
           <span className="font-bold text-white" style={{ fontSize: 28, fontFamily: "Inter, sans-serif", lineHeight: 1 }}>in</span>
@@ -138,7 +179,7 @@ function SocialNetworkIllustration() {
       {/* TikTok */}
       <div
         className="absolute flex items-center justify-center rounded-[42px]"
-        style={{ left: 352, top: 339, width: 84, height: 84, background: "rgba(206,206,206,0.3)" }}
+        style={{ left: 352, top: 339, width: 84, height: 84, background: "rgba(206,206,206,0.3)", animation: `icon-entry 0.6s ease-out ${iconAnim[5].entry} both, icon-float 3.5s ease-in-out ${iconAnim[5].float} infinite` }}
       >
         <div className="flex items-center justify-center rounded-[64px]" style={{ width: 73, height: 73, background: "#e3e2e1" }}>
           <svg viewBox="0 0 24 24" fill="#221c19" width="28" height="28">
