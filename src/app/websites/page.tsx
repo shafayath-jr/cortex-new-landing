@@ -19,7 +19,7 @@ export default function WeavexWebsiteBuilderPage() {
       <HowItWorks />
       <FeatureHighlights />
       <TemplateTeaser />
-      {/* <FaqSection /> */}
+      <FaqSection />
       <CtaCard />
     </>
   );
