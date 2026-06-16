@@ -3,6 +3,7 @@
 import Bounded from "@/components/shared/Bounded";
 import { useEffect, useRef, useState } from "react";
 import { LuCheck, LuLoader } from "react-icons/lu";
+import { Badge } from "@/components/shared/Badge";
 
 // Domain extensions to check
 const DOMAIN_EXTENSIONS = [
@@ -131,12 +132,7 @@ export function NameChecker() {
       >
         {/* Left Column (Content & Search Input) */}
         <div className="flex flex-col flex-1 items-start text-left max-w-167 w-full">
-          {/* Badge */}
-          <div className="font-figtree inline-flex items-center gap-1.5 rounded-full bg-[linear-gradient(90deg,_#F24E29_-87.66%,_rgba(242,78,41,0)_41.77%)] px-3.5 py-2">
-            <span className="text-[#F24E29] font-figtree text-[18px] font-semibold">
-              Name Check
-            </span>
-          </div>
+          <Badge text="Name Check" />
 
           {/* Heading */}
           <h2 className="font-fraunces font-bold text-[#221C19] leading-13 text-4xl sm:text-5xl lg:text-[48px] tracking-normal my-4">

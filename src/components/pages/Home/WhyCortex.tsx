@@ -13,6 +13,7 @@ import {
 } from "motion/react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { Badge } from "@/components/shared/Badge";
 
 const FEATURES = [
   {
@@ -218,13 +219,8 @@ export function WhyCortex() {
             viewport={{ once: true, amount: 0.6 }}
           >
             {/* Badge */}
-            <motion.div
-              variants={revealItem}
-              className="font-figtree inline-flex items-center gap-1.5 rounded-full bg-[linear-gradient(90deg,_#F24E29_-87.66%,_rgba(242,78,41,0)_41.77%)] px-3.5 py-2"
-            >
-              <span className="text-[#F24E29] font-figtree text-[18px] font-semibold">
-                Why Cortexgrip
-              </span>
+            <motion.div variants={revealItem}>
+              <Badge text="Why Cortexgrip" />
             </motion.div>
 
             {/* Heading */}

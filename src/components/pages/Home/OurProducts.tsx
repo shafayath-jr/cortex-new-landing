@@ -3,6 +3,7 @@
 import Bounded from "@/components/shared/Bounded";
 import { motion, type Variants } from "motion/react";
 import { LuSparkle } from "react-icons/lu";
+import { Badge } from "@/components/shared/Badge";
 
 const PRODUCTS = [
   {
@@ -67,9 +68,7 @@ export function OurProducts() {
             variants={fadeUp}
             className="flex flex-col items-center text-center"
           >
-            <div className="font-figtree inline-flex items-center gap-1.5 rounded-full bg-[linear-gradient(90deg,#F24E29_-87.66%,rgba(242,78,41,0)_41.77%)] px-3.5 py-2 text-[#F24E29] text-[18px] font-semibold">
-              Our Products
-            </div>
+            <Badge text="Our Products" />
             <h2 className="mt-4 font-fraunces text-4xl sm:text-5xl font-bold tracking-tight text-[#2E0D05]">
               Everything you need,{" "}
               <span className="text-coral-500">in one place</span>

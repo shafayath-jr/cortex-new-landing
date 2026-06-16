@@ -6,6 +6,7 @@ import { motion, type Variants } from "motion/react";
 import Link from "next/link";
 import { useState } from "react";
 import { LuMinus, LuPlus } from "react-icons/lu";
+import { Badge } from "@/components/shared/Badge";
 
 const FAQS = [
   {
@@ -74,12 +75,7 @@ export function FAQSection() {
               variants={itemVariants}
               className="flex flex-col items-start"
             >
-              {/* Badge */}
-              <div className="font-figtree inline-flex items-center gap-1.5 rounded-full bg-[linear-gradient(90deg,_#F24E29_-87.66%,_rgba(242,78,41,0)_41.77%)] px-3.5 py-2">
-                <span className="text-[#F24E29] font-figtree text-[18px] font-semibold">
-                  FAQ's
-                </span>
-              </div>
+              <Badge text="FAQ's" />
 
               {/* Heading */}
               <h2 className="font-fraunces font-bold text-[#221C19] leading-13 text-4xl sm:text-5xl lg:text-[42px] tracking-normal my-4">

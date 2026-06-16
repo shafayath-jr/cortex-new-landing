@@ -1,26 +1,34 @@
 "use client";
 
+import { Badge } from "@/components/shared/Badge";
+import Bounded from "@/components/shared/Bounded";
 import Link from "next/link";
 import { BuilderAnimation } from "./BuilderAnimation";
 
 function ArrowIcon({ className }: { className?: string }) {
   return (
     <svg
-      className={className}
-      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
       viewBox="0 0 24 24"
-      stroke="currentColor"
-      strokeWidth={2.5}
+      fill="none"
+      className={className}
     >
-      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+      <path
+        d="M5 12H19M12 19L19 12L12 5"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }
 
 export function Hero() {
-
   return (
-    <section className="relative w-full overflow-hidden bg-[#fef8f6] py-16 md:py-24 lg:py-[120px]">
+    <section className="relative w-full overflow-hidden bg-[#fef8f6]">
       {/* Decorative gradient blobs */}
       <div
         aria-hidden
@@ -30,23 +38,24 @@ export function Hero() {
         aria-hidden
         className="pointer-events-none absolute -left-40 bottom-0 size-[408px] rounded-full bg-coral-500/8 blur-[100px] md:-left-20"
       />
-
-      <div className="relative mx-auto flex max-w-7xl flex-col items-center gap-12 px-6 sm:px-8 lg:flex-row lg:items-start lg:justify-between lg:gap-16">
+      <Bounded
+        as="div"
+        className="relative flex flex-col items-center gap-12 lg:flex-row lg:items-start lg:justify-between lg:gap-16"
+      >
         {/* Left — copy + CTAs */}
         <div className="flex w-full flex-col items-start gap-8 lg:max-w-[740px]">
           <div className="flex flex-col gap-4">
-            <span className="inline-flex items-center rounded-[18px] bg-linear-to-l from-coral-500/0 from-42% to-coral-500/15 to-88% px-3.5 py-2 font-figtree text-lg font-semibold text-coral-500">
-              AI Website Builder
-            </span>
+            {/* Badge */}
+            <Badge text="AI Website Builder" className="w-fit" />
 
-            <h1 className="font-fraunces text-4xl font-bold leading-[1.06] text-[#2e0d05] sm:text-5xl md:text-6xl lg:text-[72px]">
+            <h1 className="font-fraunces text-4xl font-bold leading-[1.06] text-[#2e0d05] sm:text-5xl md:text-6xl xl:text-[72px]">
               Describe it. Watch it build.{" "}
               <span className="text-coral-500">Weavex</span>
             </h1>
 
             <p className="max-w-[660px] font-figtree text-[17px] leading-normal text-[#6b5f57] sm:text-[19px]">
-              Tell Weavex what you do, and it builds your first website — words, layout,
-              images and all — in minutes. Then make it yours.
+              Tell Weavex what you do, and it builds your first website — words,
+              layout, images and all — in minutes. Then make it yours.
             </p>
           </div>
 
@@ -73,7 +82,7 @@ export function Hero() {
         <div className="relative w-full max-w-[520px] lg:max-w-[473px]">
           <BuilderAnimation />
         </div>
-      </div>
+      </Bounded>
     </section>
   );
 }

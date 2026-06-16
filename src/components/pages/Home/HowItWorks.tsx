@@ -3,6 +3,7 @@
 import Bounded from "@/components/shared/Bounded";
 import { motion, useScroll, useSpring, useTransform } from "motion/react";
 import { useRef } from "react";
+import { Badge } from "@/components/shared/Badge";
 
 const STEPS = [
   {
@@ -64,11 +65,7 @@ export function HowItWorks() {
       >
         {/* Title — compact so 3 cards fit alongside it inside the pinned frame */}
         <div className="w-full flex flex-col items-center shrink-0 pt-4">
-          <div className="font-figtree inline-flex items-center gap-1.5 rounded-full bg-[linear-gradient(90deg,#F24E29_-87.66%,rgba(242,78,41,0)_41.77%)] px-3.5 py-1.5">
-            <span className="text-[#F24E29] font-figtree text-[16px] sm:text-[18px] font-semibold">
-              How it works
-            </span>
-          </div>
+          <Badge text="How it works" className="py-1.5" />
           <h2 className="font-fraunces font-bold text-center text-[#221C19] leading-tight text-3xl sm:text-4xl lg:text-[40px] tracking-normal mt-3">
             Online in <span className="text-coral-500">three easy steps</span>
           </h2>
