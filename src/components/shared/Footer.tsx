@@ -14,7 +14,7 @@ export function Footer() {
         <div className="flex flex-col max-w-122 gap-6">
           <Link
             href="/"
-            className="flex shrink-0 items-center transition-all duration-300 hover:opacity-85 hover:scale-[1.01] origin-left"
+            className="flex shrink-0 items-center transition-all duration-300 hover:opacity-85 hover:scale-[1.01] origin-left w-fit"
           >
             <Image
               src="/logo/logo.svg"

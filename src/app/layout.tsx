@@ -1,8 +1,11 @@
+import SmoothScroll from "@/components/providers/SmoothScroll";
+import { Navbar } from "@/components/shared/Navbar";
 import { cn } from "@/lib/utils";
+import "lenis/dist/lenis.css";
 import type { Metadata } from "next";
 import { Figtree, Fraunces } from "next/font/google";
-import { Navbar } from "@/components/shared/Navbar";
-import { PageFooter } from "@/components/pages/WeavexBuilder/PageFooter";
+
+import { Footer } from "@/components/shared/Footer";
 import "./globals.css";
 
 const figtree = Figtree({
@@ -37,10 +40,10 @@ export default function RootLayout({
         fraunces.variable,
       )}
     >
-      <body className="min-h-full flex flex-col bg-[#fef8f6]">
+      <body className="min-h-full flex flex-col">
         <Navbar />
-        <main className="flex-1 flex flex-col">{children}</main>
-        <PageFooter />
+        <SmoothScroll>{children}</SmoothScroll>
+        <Footer />
       </body>
     </html>
   );
