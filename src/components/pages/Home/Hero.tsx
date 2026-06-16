@@ -102,7 +102,7 @@ export function Hero() {
           </div>
 
           {/* Dynamic Prompt Box */}
-          <div className="font-figtree mt-5 w-full max-w-[343px] sm:max-w-[437px]">
+          <div className="font-figtree mt-5 w-full max-w-[343px] sm:max-w-[437px] z-30">
             <div className="flex w-full items-center justify-between gap-3 rounded-full border border-[#DCD2C5] bg-white p-2 shadow-sm backdrop-blur-sm">
               <div className="flex items-center gap-3 overflow-hidden">
                 {/* Sparkles Icon */}
@@ -135,7 +135,7 @@ export function Hero() {
           <SlidingPills />
         </div>
       </Bounded>
-      <div className="absolute bottom-0 -right-1/30 w-full aspect-[1.46] max-w-[550px] lg:max-w-[620px] transition-all duration-500">
+      <div className="absolute bottom-0 -right-1/30 w-full aspect-[1.46] max-w-[550px] lg:max-w-[620px] transition-all duration-500 z-20">
         <Image
           src="/images/homePage/HeroImage.png"
           alt="Cortex Grip Workspace workflow illustration"

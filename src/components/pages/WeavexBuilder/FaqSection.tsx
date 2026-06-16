@@ -1,5 +1,6 @@
 "use client";
 
+import { Badge } from "@/components/shared/Badge";
 import { useState } from "react";
 
 const FAQS = [
@@ -37,7 +38,13 @@ const FAQS = [
 
 function PlusIcon() {
   return (
-    <svg className="size-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth={2}>
+    <svg
+      className="size-5"
+      viewBox="0 0 20 20"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+    >
       <path strokeLinecap="round" strokeLinejoin="round" d="M10 4v12M4 10h12" />
     </svg>
   );
@@ -45,7 +52,13 @@ function PlusIcon() {
 
 function MinusIcon() {
   return (
-    <svg className="size-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth={2}>
+    <svg
+      className="size-5"
+      viewBox="0 0 20 20"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+    >
       <path strokeLinecap="round" strokeLinejoin="round" d="M4 10h12" />
     </svg>
   );
@@ -57,15 +70,11 @@ export function FaqSection() {
   return (
     <section className="w-full bg-[#fef8f6] py-[54px] md:py-[80px]">
       <div className="mx-auto flex max-w-7xl flex-col items-center gap-[42px] px-6 sm:px-8">
-
         {/* Header */}
         <div className="flex flex-col items-center gap-4 text-center">
-          <span className="inline-flex items-center rounded-[18px] bg-linear-to-l from-coral-500/0 from-42% to-coral-500/15 to-88% px-3.5 py-2 font-figtree text-lg font-semibold text-coral-500">
-            FAQ&apos;s
-          </span>
+          <Badge text="FAQ's" className="w-fit" />
           <h2 className="font-fraunces text-[38px] font-bold leading-normal text-[#221c19] sm:text-[42px]">
-            Questions,{" "}
-            <span className="text-coral-500">answered</span>
+            Questions, <span className="text-coral-500">answered</span>
           </h2>
         </div>
 
@@ -96,7 +105,9 @@ export function FaqSection() {
 
                   <div
                     className={`grid transition-all duration-300 ease-in-out ${
-                      isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                      isOpen
+                        ? "grid-rows-[1fr] opacity-100"
+                        : "grid-rows-[0fr] opacity-0"
                     }`}
                   >
                     <div className="overflow-hidden">
@@ -114,7 +125,6 @@ export function FaqSection() {
             );
           })}
         </div>
-
       </div>
     </section>
   );

@@ -1,4 +1,6 @@
+import { cn } from "@/lib/utils";
 import Link from "next/link";
+import Bounded from "./Bounded";
 
 interface CtaCardProps {
   heading?: string;
@@ -6,6 +8,7 @@ interface CtaCardProps {
   subtext?: string;
   ctaLabel?: string;
   ctaHref?: string;
+  className?: string;
 }
 
 export function CtaCard({
@@ -14,14 +17,14 @@ export function CtaCard({
   subtext = "No credit card, No code, No catch.",
   ctaLabel = "Build my website free",
   ctaHref = "#",
+  className = "",
 }: CtaCardProps) {
   return (
-    <section className="w-full bg-[#fef8f6] py-10 pb-20">
-      <div className="mx-auto max-w-7xl px-6 sm:px-8">
-        <div className="flex flex-col items-center gap-6 rounded-3xl bg-[#fef0ec] px-8 py-16 text-center shadow-sm">
-          <h2 className="font-fraunces text-4xl font-bold leading-tight text-[#2e0d05] sm:text-5xl lg:text-[52px]">
-            {heading}{" "}
-            <span className="text-coral-500">{headingHighlight}</span>
+    <section className={cn("w-full bg-white", className)}>
+      <Bounded as="div">
+        <div className="max-w-[1020px] mx-auto flex flex-col items-center gap-6 rounded-3xl bg-[#fef0ec] px-8 py-16 text-center shadow-sm">
+          <h2 className="font-fraunces text-4xl font-bold leading-tight text-[#2e0d05] sm:text-5xl lg:text-[46px]">
+            {heading} <span className="text-coral-500">{headingHighlight}</span>
           </h2>
           <p className="max-w-lg font-figtree text-lg leading-relaxed text-[#6b5f57]">
             {subtext}
@@ -38,11 +41,15 @@ export function CtaCard({
               stroke="currentColor"
               strokeWidth={2.5}
             >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              />
             </svg>
           </Link>
         </div>
-      </div>
+      </Bounded>
     </section>
   );
 }

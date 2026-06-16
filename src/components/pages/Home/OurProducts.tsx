@@ -1,34 +1,42 @@
 "use client";
 
-import Bounded from "@/components/shared/Bounded";
-import { motion, type Variants } from "motion/react";
-import { LuSparkle } from "react-icons/lu";
 import { Badge } from "@/components/shared/Badge";
+import Bounded from "@/components/shared/Bounded";
+import { ProductCard } from "@/components/shared/ProductCard";
+import { motion, type Variants } from "motion/react";
+
+const MotionProductCard = motion(ProductCard);
 
 const PRODUCTS = [
   {
     title: "Weavex builder",
     description: "Describe your idea, get a real website in minutes.",
+    href: "/websites",
   },
   {
     title: "Domains",
     description: "Find and register the perfect name from 500+ endings.",
+    href: "/domains",
   },
   {
     title: "Hosting",
     description: "Fast, reliable hosting that grows with you.",
+    href: "/hosting",
   },
   {
     title: "Professional Email",
     description: "A mailbox at your own domain name.",
+    href: "#",
   },
   {
     title: "SSL Security",
     description: "Free security that keeps visitors safe and trusted.",
+    href: "#",
   },
   {
     title: "Domain Protection",
     description: "Keep your name private and protected.",
+    href: "#",
   },
 ];
 
@@ -81,29 +89,14 @@ export function OurProducts() {
             className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3"
           >
             {PRODUCTS.map((product, idx) => (
-              <motion.div
+              <MotionProductCard
                 key={idx}
                 variants={fadeUp}
-                className="flex flex-col rounded-[16px] bg-white p-6 transition-all duration-200 hover:shadow-md"
-              >
-                <div className="flex size-14 bg-[#FDECE6] items-center justify-center rounded-full text-coral-500">
-                  <LuSparkle className="size-6" />
-                </div>
-
-                <h3 className="font-fraunces text-[28px] font-bold text-[#221C19] mt-10">
-                  {product.title}
-                </h3>
-                <p className="flex-1 font-figtree text-[17px] text-[#6B5F57] leading-7 mt-4 mb-10">
-                  {product.description}
-                </p>
-
-                <button
-                  type="button"
-                  className="w-full rounded-full border border-[#221C19] bg-transparent py-3 font-figtree text-[17px] font-normal text-[#221C19] leading-7 transition-colors hover:bg-zinc-50 active:scale-[0.98] cursor-pointer"
-                >
-                  Explore
-                </button>
-              </motion.div>
+                title={product.title}
+                description={product.description}
+                showLink={true}
+                href={product.href}
+              />
             ))}
           </motion.div>
         </motion.div>

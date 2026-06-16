@@ -117,7 +117,7 @@ export function SlidingPills() {
               "bg-white/90 text-[#B23117] border border-[#F1EEEA] scale-95 opacity-70 z-20";
           } else {
             styleClass =
-              "bg-white/70 text-[#B23117] border border-[#F1EEEA] scale-85 opacity-30 z-10";
+              "bg-white/70 text-[#B23117] border border-[#F1EEEA] scale-85 opacity-20 z-10";
           }
 
           return (
