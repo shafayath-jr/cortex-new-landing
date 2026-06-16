@@ -1,8 +1,11 @@
 import SmoothScroll from "@/components/providers/SmoothScroll";
+import { Navbar } from "@/components/shared/Navbar";
 import { cn } from "@/lib/utils";
+import "lenis/dist/lenis.css";
 import type { Metadata } from "next";
 import { Figtree, Fraunces } from "next/font/google";
-import "lenis/dist/lenis.css";
+
+import { Footer } from "@/components/shared/Footer";
 import "./globals.css";
 
 const figtree = Figtree({
@@ -19,7 +22,7 @@ const fraunces = Fraunces({
 
 export const metadata: Metadata = {
   title: "CortexGrip",
-  description: "CortexGrip marketing website",
+  description: "Your domain and website — without the complexity.",
 };
 
 export default function RootLayout({
@@ -38,7 +41,9 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-full flex flex-col">
+        <Navbar />
         <SmoothScroll>{children}</SmoothScroll>
+        <Footer />
       </body>
     </html>
   );

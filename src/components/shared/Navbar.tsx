@@ -8,10 +8,10 @@ import { FaArrowRight } from "react-icons/fa6";
 import Bounded from "./Bounded";
 
 const NAV_ITEMS = [
-  { label: "Websites", href: "#websites" },
-  { label: "Domains", href: "#domains" },
-  { label: "Hosting", href: "#hosting" },
-  { label: "Email", href: "#email" },
+  { label: "Websites", href: "/websites" },
+  { label: "Domains", href: "/domains" },
+  { label: "Hosting", href: "/hosting" },
+  { label: "Email", href: "/email" },
   { label: "Pricing", href: "#pricing" },
 ];
 
