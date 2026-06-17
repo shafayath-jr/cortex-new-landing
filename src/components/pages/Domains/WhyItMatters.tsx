@@ -435,7 +435,7 @@ import React from "react";
 export function WhyItMatters() {
   return (
     <section className="bg-white w-full relative overflow-hidden">
-      <Bounded as="div" className="">
+      <Bounded as="div">
         <div className="flex flex-col items-center justify-between gap-16 lg:flex-row">
           {/* Left: copy */}
           <div className="flex flex-col gap-6">
