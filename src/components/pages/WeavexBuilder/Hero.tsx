@@ -2,29 +2,9 @@
 
 import { Badge } from "@/components/shared/Badge";
 import Bounded from "@/components/shared/Bounded";
+import RightArrowIcon from "@/components/ui/icons/RightArrowIcon";
 import Link from "next/link";
 import { BuilderAnimation } from "./BuilderAnimation";
-
-function ArrowIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      className={className}
-    >
-      <path
-        d="M5 12H19M12 19L19 12L12 5"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
 
 export function Hero() {
   return (
@@ -48,7 +28,7 @@ export function Hero() {
             {/* Badge */}
             <Badge text="AI Website Builder" className="w-fit" />
 
-            <h1 className="font-fraunces text-4xl font-bold leading-[1.06] text-[#2e0d05] sm:text-5xl md:text-6xl xl:text-[72px]">
+            <h1 className="font-fraunces text-4xl font-bold leading-[1.06] text-[#2e0d05] sm:text-5xl md:text-6xl lg:text-[66px]">
               Describe it. Watch it build.{" "}
               <span className="text-coral-500">Weavex</span>
             </h1>
@@ -65,7 +45,7 @@ export function Hero() {
               className="group inline-flex h-[56px] items-center justify-center gap-2 rounded-full bg-coral-500 px-8 font-figtree text-base font-semibold text-white transition-all duration-200 hover:bg-coral-600 hover:scale-[1.02] active:scale-[0.98]"
             >
               <span>Build for free</span>
-              <ArrowIcon className="size-6 transition-transform duration-200 group-hover:translate-x-1" />
+              <RightArrowIcon className="size-6 transition-transform duration-200 group-hover:translate-x-1" />
             </Link>
 
             <Link
@@ -73,7 +53,7 @@ export function Hero() {
               className="group inline-flex h-[56px] items-center justify-center gap-2 rounded-full border border-[#dcd2c5] bg-white px-6 font-figtree text-base font-medium text-[#2e0d05] transition-all duration-200 hover:bg-[#fef8f6] active:scale-[0.98]"
             >
               <span>See Templates</span>
-              <ArrowIcon className="size-6 text-[#2e0d05] transition-transform duration-200 group-hover:translate-x-1" />
+              <RightArrowIcon className="size-6 text-[#2e0d05] transition-transform duration-200 group-hover:translate-x-1" />
             </Link>
           </div>
         </div>

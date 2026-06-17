@@ -1,11 +1,54 @@
+import { Badge } from "@/components/shared/Badge";
+
 const ENDINGS = [
-  ".com", ".co.uk", ".shop", ".studio", ".io", ".net", ".org", ".app",
-  ".store", ".online", ".info", ".biz", ".design", ".tech", ".digital",
-  ".co", ".me", ".ai", ".dev", ".agency", ".media", ".photography",
-  ".services", ".solutions", ".consulting", ".events", ".club", ".space",
-  ".life", ".world", ".today", ".health", ".fitness", ".beauty", ".art",
-  ".music", ".food", ".kitchen", ".cafe", ".bar", ".pizza", ".salon",
-  ".plumbing", ".repairs", ".cleaning", ".legal", ".accountant", ".estate",
+  ".com",
+  ".co.uk",
+  ".shop",
+  ".studio",
+  ".io",
+  ".net",
+  ".org",
+  ".app",
+  ".store",
+  ".online",
+  ".info",
+  ".biz",
+  ".design",
+  ".tech",
+  ".digital",
+  ".co",
+  ".me",
+  ".ai",
+  ".dev",
+  ".agency",
+  ".media",
+  ".photography",
+  ".services",
+  ".solutions",
+  ".consulting",
+  ".events",
+  ".club",
+  ".space",
+  ".life",
+  ".world",
+  ".today",
+  ".health",
+  ".fitness",
+  ".beauty",
+  ".art",
+  ".music",
+  ".food",
+  ".kitchen",
+  ".cafe",
+  ".bar",
+  ".pizza",
+  ".salon",
+  ".plumbing",
+  ".repairs",
+  ".cleaning",
+  ".legal",
+  ".accountant",
+  ".estate",
 ];
 
 function Pill({ label }: { label: string }) {
@@ -20,7 +63,7 @@ function Pill({ label }: { label: string }) {
 
 export function EndingsStrip() {
   return (
-    <section className="relative w-full overflow-hidden bg-[#fef8f6] py-[80px]">
+    <section className="relative w-full overflow-hidden bg-[#fef8f6] py-20">
       {/* Decorative blobs */}
       <div
         aria-hidden
@@ -34,9 +77,7 @@ export function EndingsStrip() {
       <div className="relative flex flex-col items-center gap-8">
         {/* Header */}
         <div className="flex flex-col items-center gap-4">
-          <span className="inline-flex items-center rounded-[18px] bg-linear-to-l from-coral-500/0 from-42% to-coral-500/15 to-88% px-3.5 py-2 font-figtree text-lg font-semibold text-coral-500">
-            Endings strip
-          </span>
+          <Badge text="Endings strip" className="w-fit" />
 
           <h2
             className="text-center font-fraunces text-[40px] font-bold leading-[1.08] sm:text-[48px]"
