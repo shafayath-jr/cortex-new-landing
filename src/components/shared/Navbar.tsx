@@ -3,6 +3,7 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { FaArrowRight } from "react-icons/fa6";
 import Bounded from "./Bounded";
@@ -17,6 +18,7 @@ const NAV_ITEMS = [
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-zinc-200/50 bg-white/80 font-figtree backdrop-blur-md dark:border-zinc-800/50 dark:bg-black/80">
@@ -38,16 +40,29 @@ export function Navbar() {
 
         {/* Desktop Navigation Links */}
         <nav className="hidden lg:flex items-center gap-8 xl:gap-10">
-          {NAV_ITEMS.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className="relative text-[19px] font-normal text-[#2E0D05] transition-colors hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50 group"
-            >
-              {item.label}
-              <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-coral-600 transition-all duration-200 group-hover:w-full" />
-            </Link>
-          ))}
+          {NAV_ITEMS.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <Link
+                key={item.label}
+                href={item.href}
+                className={cn(
+                  "relative text-[19px] pb-0.5 transition-colors dark:text-zinc-400 dark:hover:text-zinc-50 group",
+                  isActive
+                    ? "font-semibold text-coral-600"
+                    : "font-normal text-[#2E0D05] hover:text-zinc-950",
+                )}
+              >
+                {item.label}
+                <span
+                  className={cn(
+                    "absolute bottom-0 left-0 h-0.5 bg-coral-600 transition-all duration-200",
+                    isActive ? "w-full" : "w-0 group-hover:w-full",
+                  )}
+                />
+              </Link>
+            );
+          })}
         </nav>
 
         {/* Desktop CTA Button */}
@@ -111,16 +126,24 @@ export function Navbar() {
       >
         <div className="overflow-hidden px-6">
           <div className="flex flex-col gap-4">
-            {NAV_ITEMS.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                onClick={() => setIsOpen(false)}
-                className="py-1.5 text-base font-medium text-zinc-700 transition-colors hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50"
-              >
-                {item.label}
-              </Link>
-            ))}
+            {NAV_ITEMS.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className={cn(
+                    "py-1.5 text-base transition-colors",
+                    isActive
+                      ? "font-semibold text-coral-600 dark:text-coral-500"
+                      : "font-medium text-zinc-700 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50",
+                  )}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
             <hr className="my-2 border-zinc-100 dark:border-zinc-900" />
             <Link
               href="#build"

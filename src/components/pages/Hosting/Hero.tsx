@@ -9,7 +9,7 @@ export function HostingHero() {
     <section className="relative w-full overflow-hidden bg-white">
       {/* Green ellipse glow — top right */}
       <div
-        className="pointer-events-none absolute right-0 -bottom-20 lg:top-[166px] size-[539px]"
+        className="pointer-events-none absolute right-0 -bottom-20 lg:top-41.5 size-134.75"
         aria-hidden
       >
         <svg
@@ -71,7 +71,7 @@ export function HostingHero() {
             <span className="relative text-coral-500">
               Fast and Online {/* Underline ellipse */}
               <span
-                className="pointer-events-none absolute -bottom-3 left-0 h-[47px] w-full -rotate-[1.48deg]"
+                className="pointer-events-none absolute -bottom-3 left-0 h-11.75 w-full rotate-[-1.48deg]"
                 aria-hidden
               >
                 <svg
@@ -124,7 +124,7 @@ export function HostingHero() {
           <div className="flex flex-wrap gap-3">
             <Link
               href="#"
-              className="inline-flex h-[56px] items-center gap-2 rounded-full bg-coral-500 px-8 font-figtree text-base font-semibold text-white shadow-md shadow-coral-500/20 transition-all duration-200 hover:bg-coral-600 hover:scale-[1.02] active:scale-[0.98]"
+              className="inline-flex h-14 items-center gap-2 rounded-full bg-coral-500 px-8 font-figtree text-base font-semibold text-white shadow-md shadow-coral-500/20 transition-all duration-200 hover:bg-coral-600 hover:scale-[1.02] active:scale-[0.98]"
             >
               See Hosting Plans
               <RightArrowIcon className="size-5" />
@@ -132,7 +132,7 @@ export function HostingHero() {
 
             <Link
               href="#"
-              className="inline-flex h-[56px] items-center gap-2 rounded-full border border-[#dcd2c5] bg-white px-8 font-figtree text-base font-medium text-[#2e0d05] transition-all duration-200 hover:border-[#c5b8ac] hover:scale-[1.02] active:scale-[0.98]"
+              className="inline-flex h-14 items-center gap-2 rounded-full border border-[#dcd2c5] bg-white px-8 font-figtree text-base font-medium text-[#2e0d05] transition-all duration-200 hover:border-[#c5b8ac] hover:scale-[1.02] active:scale-[0.98]"
             >
               Build a website
               <RightArrowIcon className="size-5" />
