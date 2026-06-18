@@ -12,7 +12,7 @@ interface CtaCardProps {
   className?: string;
 }
 
-export function CtaCard({
+export function WhiteCtaCard({
   heading = "Your website is",
   headingHighlight = "one sentence away",
   subtext = "No credit card, No code, No catch.",
@@ -21,13 +21,16 @@ export function CtaCard({
   className = "",
 }: CtaCardProps) {
   return (
-    <section className={cn("w-full bg-white", className)}>
+    <section className={cn("w-full bg-[#FEF8F6]", className)}>
       <Bounded as="div">
-        <div className="max-w-255 mx-auto flex flex-col items-center gap-6 rounded-3xl bg-[#fef0ec] px-8 py-16 text-center shadow-sm">
+        <div className="max-w-255 mx-auto flex flex-col items-center gap-6 rounded-3xl bg-white px-8 py-16 text-center shadow-sm">
           <h2 className="font-fraunces text-4xl font-bold leading-tight text-[#2e0d05] sm:text-5xl lg:text-[46px]">
-            {heading} <span className="text-coral-500">{headingHighlight}</span>
+            {heading}{" "}
+            {headingHighlight && (
+              <span className="text-coral-500">{headingHighlight}</span>
+            )}
           </h2>
-          <p className="max-w-192.5 mx-auto font-figtree text-center text-lg leading-relaxed text-[#6b5f57]">
+          <p className="max-w-192.5 mx-auto font-figtree text-lg text-center leading-relaxed text-[#6b5f57]">
             {subtext}
           </p>
           <Link

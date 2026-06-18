@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="w-full bg-[#FEF8F6]">
+    <footer className="w-full bg-[#FEF8F6] border-t border-coral-100/25">
       {/* Main Footer Content */}
       <Bounded
         as="div"

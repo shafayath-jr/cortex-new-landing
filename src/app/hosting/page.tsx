@@ -1,6 +1,7 @@
 import { HostingHero } from "@/components/pages/Hosting/Hero";
-import { HostingWhyItMatters } from "@/components/pages/Hosting/WhyItMatters";
 import { WebHostingReality } from "@/components/pages/Hosting/WebHostingReality";
+import { HostingWhyItMatters } from "@/components/pages/Hosting/WhyItMatters";
+import { WhiteCtaCard } from "@/components/shared/WhiteCtaCard";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -15,6 +16,13 @@ export default function HostingPage() {
       <HostingHero />
       <HostingWhyItMatters />
       <WebHostingReality />
+      <WhiteCtaCard
+        heading="Get reliable"
+        headingHighlight="hosting"
+        subtext="Fast, secure, always on — starting from the moment you publish."
+        ctaLabel="See Plans"
+        ctaHref="/plans"
+      />
     </>
   );
 }
