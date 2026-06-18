@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Lottie from "lottie-react";
 import { Badge } from "@/components/shared/Badge";
 import Bounded from "@/components/shared/Bounded";
 import QuickLoadIcon from "@/components/ui/icons/QuickLoadIcon";
 import ShieldIcon from "@/components/ui/icons/ShieldIcon";
 import StarIcon from "@/components/ui/icons/StarIcon";
+import Lottie from "lottie-react";
+import { useEffect, useState } from "react";
 
 interface WhyItMattersSectionProps {
   badgeText?: string;
@@ -19,6 +19,7 @@ interface WhyItMattersSectionProps {
   card3Description: React.ReactNode;
   card4Title: string;
   card4Description: React.ReactNode;
+  leftColumnReverse?: boolean;
 }
 
 export function WhyItMattersSection({
@@ -32,17 +33,22 @@ export function WhyItMattersSection({
   card3Description,
   card4Title,
   card4Description,
+  leftColumnReverse = false,
 }: WhyItMattersSectionProps) {
   const [globeData, setGlobeData] = useState<any>(null);
   const [loadData, setLoadData] = useState<any>(null);
 
   useEffect(() => {
-    import("../../../public/lottie/hosting/internetBrowserAnimation.json").then((mod) => {
-      setGlobeData(mod.default);
-    });
-    import("../../../public/lottie/hosting/loadingRocketAnimation.json").then((mod) => {
-      setLoadData(mod.default);
-    });
+    import("../../../public/lottie/hosting/internetBrowserAnimation.json").then(
+      (mod) => {
+        setGlobeData(mod.default);
+      },
+    );
+    import("../../../public/lottie/hosting/loadingRocketAnimation.json").then(
+      (mod) => {
+        setLoadData(mod.default);
+      },
+    );
   }, []);
 
   return (
@@ -62,9 +68,11 @@ export function WhyItMattersSection({
         {/* Bento grid */}
         <div className="flex flex-col gap-6 2xl:gap-12 xl:flex-row xl:justify-center">
           {/* Left column */}
-          <div className="flex flex-col gap-6 justify-between flex-1">
+          <div
+            className={`flex flex-col gap-6 justify-between flex-1 ${leftColumnReverse ? "flex-col-reverse" : ""}`}
+          >
             {/* Card 1 — wide card */}
-            <div className="relative overflow-hidden rounded-2xl bg-white p-6">
+            <div className="relative overflow-hidden rounded-2xl bg-white p-6 hover:-translate-y-2 transition-transform duration-500">
               <div className="flex gap-7 flex-col lg:flex-row">
                 <div className="flex-2 flex flex-col gap-7 xl:max-w-110">
                   <div className="flex size-17 shrink-0 items-center justify-center rounded-full bg-coral-50">
@@ -77,7 +85,7 @@ export function WhyItMattersSection({
                     >
                       {card1Title}
                     </h3>
-                    <p className="max-w-109.75 font-figtree text-[20px] leading-[1.6] text-[#6b5f57]">
+                    <p className="xl:max-w-109.75 font-figtree text-[20px] leading-[1.6] text-[#6b5f57]">
                       {card1Description}
                     </p>
                   </div>
@@ -85,10 +93,7 @@ export function WhyItMattersSection({
                 {/* Browser + rocket loading animation */}
                 <div className="flex-1 max-w-[400px] min-h-[160px] mx-auto flex items-center justify-center scale-[1.25] xl:scale-[1.3]">
                   {loadData ? (
-                    <Lottie
-                      animationData={loadData}
-                      loop={true}
-                    />
+                    <Lottie animationData={loadData} loop={true} />
                   ) : (
                     <div className="size-full" />
                   )}
@@ -99,7 +104,7 @@ export function WhyItMattersSection({
             {/* Bottom two cards */}
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               {/* Card 2 */}
-              <div className="flex flex-col justify-center gap-7 rounded-2xl bg-white p-6">
+              <div className="flex flex-col justify-center gap-7 rounded-2xl bg-white p-6 hover:translate-y-[-8px] transition-transform duration-500">
                 <div className="flex size-17 shrink-0 items-center justify-center rounded-full bg-coral-50">
                   <ShieldIcon className="size-8" />
                 </div>
@@ -117,7 +122,7 @@ export function WhyItMattersSection({
               </div>
 
               {/* Card 3 */}
-              <div className="flex flex-col justify-center gap-7 rounded-2xl bg-white p-6">
+              <div className="flex flex-col justify-center gap-7 rounded-2xl bg-white p-6 hover:-translate-y-2 transition-transform duration-500">
                 <div className="flex size-17 shrink-0 items-center justify-center rounded-full bg-coral-50">
                   <StarIcon className="size-8" />
                 </div>
@@ -137,7 +142,7 @@ export function WhyItMattersSection({
           </div>
 
           {/* Card 4 — Right column */}
-          <div className="flex-1 flex flex-col gap-6 overflow-hidden rounded-2xl bg-white p-6 lg:shrink-0 xl:max-w-127 2xl:max-w-full">
+          <div className="flex-1 flex flex-col gap-6 overflow-hidden rounded-2xl bg-white p-6 lg:shrink-0 xl:max-w-127 2xl:max-w-full hover:-translate-y-2 transition-transform duration-500">
             <div className="flex flex-col gap-7">
               <div className="flex size-17 shrink-0 items-center justify-center rounded-full bg-coral-50">
                 <StarIcon className="size-8" />

@@ -71,7 +71,7 @@ export function Hero() {
         {/* Left Column (Content) */}
         <div className="flex flex-col flex-2 items-start text-left max-w-185">
           {/* Main Serif Headline */}
-          <h1 className="font-fraunces font-bold  text-[#2E0D05] leading-19 tracking-normal text-4xl sm:text-5xl md:text-6xl lg:text-[66px]">
+          <h1 className="font-fraunces font-bold  text-[#2E0D05] leading-10 md:leading-19 tracking-normal text-4xl sm:text-5xl md:text-6xl lg:text-[66px]">
             Your <span className="text-coral-500">big idea</span> deserves to be
             online.
           </h1>
