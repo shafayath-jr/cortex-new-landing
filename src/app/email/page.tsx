@@ -1,7 +1,7 @@
 import { EmailHero } from "@/components/pages/Email/Hero";
-import { EmailWhyItMatters } from "@/components/pages/Email/WhyItMatters";
 import { M365Section } from "@/components/pages/Email/M365Section";
-import { CtaCard } from "@/components/shared/CtaCard";
+import { EmailWhyItMatters } from "@/components/pages/Email/WhyItMatters";
+import { WhiteCtaCard } from "@/components/shared/WhiteCtaCard";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -16,11 +16,11 @@ export default function EmailPage() {
       <EmailHero />
       <EmailWhyItMatters />
       <M365Section />
-      <CtaCard
-        heading="Your professional email is"
-        headingHighlight="one click away"
-        subtext="No credit card. No setup fees. Just your name at your domain."
-        ctaLabel="Get Professional Email"
+      <WhiteCtaCard
+        heading="Get email at your own name"
+        subtext="hello@yourbusiness.com is waiting for you."
+        ctaLabel="See Email plans"
+        ctaHref="/plans"
       />
     </>
   );

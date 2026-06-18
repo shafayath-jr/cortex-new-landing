@@ -14,7 +14,7 @@ interface CtaCardProps {
 
 export function WhiteCtaCard({
   heading = "Your website is",
-  headingHighlight = "one sentence away",
+  headingHighlight = "",
   subtext = "No credit card, No code, No catch.",
   ctaLabel = "Build my website free",
   ctaHref = "#",
