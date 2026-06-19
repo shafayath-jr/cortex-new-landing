@@ -56,7 +56,7 @@ export function HostingHero() {
         </svg>
       </div>
 
-      <Bounded className="relative flex flex-col lg:flex-row items-center justify-between gap-4">
+      <Bounded className="relative flex flex-col lg:flex-row items-center justify-between gap-8 xl:gap-12">
         {/* Left: copy */}
         <div className="flex flex-col gap-8 lg:max-w-180 flex-1">
           {/* Badge */}
@@ -149,6 +149,7 @@ export function HostingHero() {
             src="/images/hosting/hero-illustration.png"
             alt="Hosting illustration"
             fill
+            sizes="(max-width: 1024px) 100vw, 501px"
             className="object-contain"
             priority
           />
