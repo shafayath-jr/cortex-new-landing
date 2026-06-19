@@ -17,11 +17,11 @@ export default function PricingPage() {
       <PricingFeatures />
       <PricingFAQ />
       <CtaCard
-        heading="Your website is"
-        headingHighlight="one sentence away"
-        subtext="No credit card. No code. No catch."
-        ctaLabel="Build my website free"
-        ctaHref="/builder"
+        heading="Start free"
+        headingHighlight="today"
+        subtext="No credit card needed. Build and publish for free, upgrade when you're ready."
+        ctaLabel="Get Started for free"
+        ctaHref="#"
       />
     </main>
   );

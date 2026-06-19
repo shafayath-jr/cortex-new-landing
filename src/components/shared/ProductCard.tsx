@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import React, { forwardRef } from "react";
+import { FaArrowRight } from "react-icons/fa6";
 import { LuSparkle } from "react-icons/lu";
 
 export interface ProductCardProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -8,9 +9,9 @@ export interface ProductCardProps extends React.HTMLAttributes<HTMLDivElement> {
   description: string;
   icon?: React.ReactNode;
   showLink?: boolean;
-  buttonText?: string;
-  onButtonClick?: () => void;
+  linkText?: string;
   href?: string;
+  showArrow?: boolean;
 }
 
 export const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(
@@ -20,9 +21,9 @@ export const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(
       description,
       icon,
       showLink = true,
-      buttonText = "Explore",
-      onButtonClick,
+      linkText = "Explore",
       href = "#",
+      showArrow = false,
       className,
       ...props
     },
@@ -32,7 +33,7 @@ export const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(
       <div
         ref={ref}
         className={cn(
-          "flex h-full flex-col rounded-[16px] bg-white p-6 transition-all duration-200 hover:shadow-md",
+          "flex h-full flex-col rounded-[16px] bg-white p-6",
           className,
         )}
         {...props}
@@ -56,16 +57,19 @@ export const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(
         {showLink && (
           <Link
             href={href}
-            onClick={onButtonClick}
             className="group relative flex h-12 items-center justify-center overflow-hidden bg-white text-[#221C19] hover:text-[#F24E29] tracking-wider border border-[#221C19] font-figtree w-full hover:border-[#F24E29] hover:bg-[#FDECE6] cursor-pointer rounded-full transition-all duration-300 active:scale-[0.98] text-center"
           >
-            {/* Text */}
+            {/* Text Wrapper */}
             <span className="relative flex h-full w-full items-center justify-center overflow-hidden font-normal">
-              <span className="absolute transition-all duration-700 group-hover:-translate-y-14 group-hover:rotate-6">
-                {buttonText}
+              {/* Default State */}
+              <span className="flex items-center gap-2 transition-all duration-500 group-hover:-translate-y-14 group-hover:rotate-6">
+                {linkText}
+                {showArrow && <FaArrowRight className="size-4" />}
               </span>
-              <span className="absolute translate-y-14 transition-all duration-700 group-hover:translate-y-0">
-                {buttonText}
+              {/* Hover State */}
+              <span className="flex items-center gap-2 absolute translate-y-14 transition-all duration-500 group-hover:translate-y-0">
+                {linkText}
+                {showArrow && <FaArrowRight className="size-4" />}
               </span>
             </span>
           </Link>

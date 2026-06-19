@@ -13,7 +13,7 @@ const NAV_ITEMS = [
   { label: "Domains", href: "/domains" },
   { label: "Hosting", href: "/hosting" },
   { label: "Email", href: "/email" },
-  { label: "Pricing", href: "#pricing" },
+  { label: "Pricing", href: "/pricing" },
 ];
 
 export function Navbar() {

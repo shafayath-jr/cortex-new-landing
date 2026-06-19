@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "motion/react";
 import { Badge } from "@/components/shared/Badge";
 import Bounded from "@/components/shared/Bounded";
 import { ProductCard } from "@/components/shared/ProductCard";
@@ -40,6 +43,26 @@ const FEATURES = [
   },
 ];
 
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const fadeUpVariants = {
+  hidden: { y: 24, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { duration: 0.6, ease: [0.215, 0.61, 0.355, 1] as const },
+  },
+};
+
+const MotionProductCard = motion(ProductCard);
+
 export function FeatureHighlights() {
   return (
     <section className="relative w-full overflow-hidden bg-[#fef8f6]">
@@ -53,27 +76,51 @@ export function FeatureHighlights() {
         className="pointer-events-none absolute -left-28 -top-20 size-[326px] rounded-full bg-coral-500/10 blur-[100px]"
       />
 
-      <Bounded className="relative flex-col items-center gap-8 lg:gap-[32px]">
+      <Bounded className="relative flex-col items-center">
         {/* Header */}
-        <div className="flex flex-col items-center gap-4 text-center">
-          <Badge text="Feature Highlights" className="w-fit" />
-          <h2 className="font-fraunces text-4xl font-semibold leading-normal text-[#221c19] sm:text-5xl lg:text-[48px]">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="flex flex-col items-center text-center"
+        >
+          <motion.div variants={fadeUpVariants}>
+            <Badge text="Feature Highlights" className="w-fit" />
+          </motion.div>
+          <motion.h2
+            variants={fadeUpVariants}
+            className="font-fraunces font-bold text-[#221C19] text-4xl sm:text-5xl mt-4 mb-6"
+            style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}
+          >
             Everything you need,{" "}
             <span className="text-coral-500">nothing you don&apos;t</span>
-          </h2>
-        </div>
+          </motion.h2>
+        </motion.div>
 
         {/* Grid */}
-        <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-8">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-8"
+        >
           {FEATURES.map((feature) => (
-            <ProductCard
+            <MotionProductCard
               key={feature.id}
+              variants={fadeUpVariants}
               title={feature.title}
               description={feature.description}
               showLink={false}
+              whileHover={{
+                y: -10,
+                boxShadow: "0 20px 40px rgba(0, 0, 0, 0.04)",
+              }}
+              transition={{ type: "spring", stiffness: 400, damping: 30 }}
             />
           ))}
-        </div>
+        </motion.div>
       </Bounded>
     </section>
   );

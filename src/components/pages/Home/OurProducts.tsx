@@ -96,6 +96,7 @@ export function OurProducts() {
                 description={product.description}
                 showLink={true}
                 href={product.href}
+                className="transition-all duration-300 hover:shadow-md hover:-translate-y-1.5"
               />
             ))}
           </motion.div>
