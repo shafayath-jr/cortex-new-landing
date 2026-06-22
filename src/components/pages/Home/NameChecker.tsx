@@ -3,7 +3,7 @@
 import Bounded from "@/components/shared/Bounded";
 import { useEffect, useRef, useState } from "react";
 import { LuCheck, LuLoader } from "react-icons/lu";
-import { Badge } from "@/components/shared/Badge";
+import { checkDomains } from "@/lib/domain";
 
 // Domain extensions to check
 const DOMAIN_EXTENSIONS = [
@@ -77,6 +77,7 @@ export function NameChecker() {
   const [isSearching, setIsSearching] = useState(false);
   const [revealResults, setRevealResults] = useState(true);
   const [staggerCount, setStaggerCount] = useState(8);
+  const [domainResults, setDomainResults] = useState<Record<string, "available" | "taken">>({});
   const staggerTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   // Format clean query for display: remove spaces and special characters, keep lowercase
@@ -85,21 +86,39 @@ export function NameChecker() {
     return clean || "rosiesbakery";
   };
 
-  const handleSearchSubmit = (e: React.FormEvent) => {
+  const handleSearchSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const queryToSearch = inputValue.trim();
     if (!queryToSearch) return;
 
+    const slug = formatHandle(queryToSearch);
     setIsSearching(true);
     setRevealResults(false);
     setStaggerCount(0);
 
-    // Simulate network delay for checking
-    setTimeout(() => {
-      setCurrentQuery(formatHandle(queryToSearch));
+    try {
+      const extensions = DOMAIN_EXTENSIONS.map((item) => item.ext);
+      const results = await checkDomains(slug, extensions);
+
+      const resultsMap: Record<string, "available" | "taken"> = {};
+      results.forEach((r) => {
+        const extItem = DOMAIN_EXTENSIONS.find(
+          (item) => `${slug}${item.ext}`.toLowerCase() === r.domain.toLowerCase()
+        );
+        if (extItem) {
+          resultsMap[extItem.type] = r.available ? "available" : "taken";
+        }
+      });
+      setDomainResults(resultsMap);
+    } catch (err) {
+      console.error("Domain checker API error:", err);
+      // Fallback: clear API results so render falls back to deterministic simulation
+      setDomainResults({});
+    } finally {
+      setCurrentQuery(slug);
       setIsSearching(false);
       setRevealResults(true);
-    }, 1200);
+    }
   };
 
   // Run a staggered visual check animation when search completes
@@ -132,7 +151,12 @@ export function NameChecker() {
       >
         {/* Left Column (Content & Search Input) */}
         <div className="flex flex-col flex-1 items-start text-left max-w-167 w-full">
-          <Badge text="Name Check" />
+          {/* Badge */}
+          <div className="font-figtree inline-flex items-center gap-1.5 rounded-full bg-[linear-gradient(90deg,_#F24E29_-87.66%,_rgba(242,78,41,0)_41.77%)] px-3.5 py-2">
+            <span className="text-[#F24E29] font-figtree text-[18px] font-semibold">
+              Name Check
+            </span>
+          </div>
 
           {/* Heading */}
           <h2 className="font-fraunces font-bold text-[#221C19] leading-13 text-4xl sm:text-5xl lg:text-[48px] tracking-normal my-4">
@@ -191,8 +215,8 @@ export function NameChecker() {
                   const isVisible = revealResults && staggerCount > idx;
                   const isChecking = isSearching || !isVisible;
 
-                  // Compute deterministic availability
-                  const status = getDeterministicStatus(queryName, item.type);
+                  // Compute availability from API results with deterministic fallback
+                  const status = domainResults[item.type] || getDeterministicStatus(queryName, item.type);
 
                   return (
                     <div
