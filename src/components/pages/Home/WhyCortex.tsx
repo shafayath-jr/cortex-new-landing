@@ -207,7 +207,7 @@ export function WhyCortex() {
   };
 
   return (
-    <section ref={containerRef} className="bg-white relative lg:h-[200vh]">
+    <section ref={containerRef} className="bg-white relative lg:h-[240vh]">
       <div className="lg:sticky lg:top-0 lg:min-h-screen">
         <Bounded as="div">
           {/* Header */}
@@ -274,56 +274,73 @@ export function WhyCortex() {
                         }
                       : {})}
                     className={cn(
-                      "w-full text-left rounded-[24px] py-6 lg:py-7 2xl:py-8 px-6 lg:px-8 transition-colors duration-500 flex items-start gap-6 lg:gap-8 justify-between cursor-pointer border-none",
-                      isActive
-                        ? "bg-coral-500 shadow-lg"
-                        : "bg-[#FAF6EF] hover:bg-[#F3EFE8]",
+                      "w-full text-left rounded-[24px] py-6 lg:py-7 2xl:py-8 px-6 lg:px-8 flex items-start gap-6 lg:gap-8 justify-between cursor-pointer border-none shadow-md",
                     )}
+                    animate={{
+                      backgroundColor: isActive ? "#f24e29" : "#FAF6EF",
+                      boxShadow: isActive
+                        ? "0 10px 15px -3px rgba(242, 78, 41, 0.25), 0 4px 6px -4px rgba(242, 78, 41, 0.25)"
+                        : "0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)",
+                    }}
+                    whileHover={isActive ? {} : { backgroundColor: "#F3EFE8" }}
                     layout
                     transition={{
                       layout: { duration: 0.38, ease: [0.16, 1, 0.3, 1] },
+                      backgroundColor: { duration: 0.38, ease: [0.16, 1, 0.3, 1] },
+                      boxShadow: { duration: 0.38, ease: [0.16, 1, 0.3, 1] },
                     }}
                   >
-                    <div className="flex flex-col">
+                    <div className="flex flex-col flex-1">
                       <motion.h3
                         layout="position"
-                        className={cn(
-                          "font-fraunces text-[22px] lg:text-[24px] xl:text-[28px] font-bold",
-                          isActive ? "text-[#FEF8F6]" : "text-[#221C19]",
-                        )}
+                        animate={{
+                          color: isActive ? "#FEF8F6" : "#221C19",
+                        }}
+                        transition={{
+                          duration: 0.38,
+                          ease: [0.16, 1, 0.3, 1],
+                        }}
+                        className="font-fraunces text-[22px] lg:text-[24px] xl:text-[28px] font-bold"
                       >
                         {feature.title}
                       </motion.h3>
-                      {isActive && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0, y: -6 }}
-                          animate={{ opacity: 1, height: "auto", y: 0 }}
-                          exit={{ opacity: 0, height: 0, y: -6 }}
-                          transition={{
-                            height: { duration: 0.38, ease: [0.16, 1, 0.3, 1] },
-                            opacity: {
-                              duration: 0.28,
-                              ease: [0.16, 1, 0.3, 1],
-                              delay: 0.02,
-                            },
-                            y: { duration: 0.38, ease: [0.16, 1, 0.3, 1] },
-                          }}
-                          className="overflow-hidden"
-                        >
-                          <p className="mt-3 font-figtree text-[15px] lg:text-[16px] xl:text-[17px] text-[#FEF8F6] leading-7">
-                            {feature.description}
-                          </p>
-                        </motion.div>
-                      )}
+                      <motion.div
+                        initial={false}
+                        animate={{
+                          height: isActive ? "auto" : 0,
+                          opacity: isActive ? 1 : 0,
+                          marginTop: isActive ? 12 : 0,
+                        }}
+                        transition={{
+                          height: { duration: 0.38, ease: [0.16, 1, 0.3, 1] },
+                          opacity: {
+                            duration: 0.28,
+                            ease: [0.16, 1, 0.3, 1],
+                            delay: isActive ? 0.02 : 0,
+                          },
+                          marginTop: { duration: 0.38, ease: [0.16, 1, 0.3, 1] },
+                        }}
+                        className="overflow-hidden"
+                      >
+                        <p className="font-figtree text-[15px] lg:text-[16px] xl:text-[17px] text-[#FEF8F6] leading-7">
+                          {feature.description}
+                        </p>
+                      </motion.div>
                     </div>
-                    <div
-                      className={cn(
-                        "shrink-0 size-14 lg:size-16 xl:size-20 rounded-[14px] flex items-center justify-center transition-colors duration-500",
-                        isActive ? "bg-[#FDECE633]" : "bg-[#FBF1E2]",
-                      )}
+                    <motion.div
+                      animate={{
+                        backgroundColor: isActive
+                          ? "rgba(253, 236, 230, 0.2)"
+                          : "#FBF1E2",
+                      }}
+                      transition={{
+                        duration: 0.38,
+                        ease: [0.16, 1, 0.3, 1],
+                      }}
+                      className="shrink-0 size-14 lg:size-16 xl:size-20 rounded-[14px] flex items-center justify-center"
                     >
                       <FlameIcon isActive={isActive} />
-                    </div>
+                    </motion.div>
                   </motion.button>
                 );
               })}
