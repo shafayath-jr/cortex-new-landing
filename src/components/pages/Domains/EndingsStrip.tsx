@@ -1,4 +1,5 @@
 import { Badge } from "@/components/shared/Badge";
+import Link from "next/link";
 
 const ENDINGS = [
   ".com",
@@ -52,12 +53,16 @@ const ENDINGS = [
 ];
 
 function Pill({ label }: { label: string }) {
+  const slug = label.replace(/^\./, "");
   return (
-    <div className="flex shrink-0 items-center justify-center rounded-[40px] border border-coral-200 bg-[#fef8f6] px-7 py-5">
+    <Link
+      href={`/domains/${slug}`}
+      className="flex shrink-0 items-center justify-center rounded-[40px] border border-coral-200 bg-[#fef8f6] px-7 py-5 transition-colors hover:border-coral-400 hover:bg-coral-50"
+    >
       <span className="font-figtree text-[26px] font-semibold leading-[1.1] text-coral-500 whitespace-nowrap">
         {label}
       </span>
-    </div>
+    </Link>
   );
 }
 
