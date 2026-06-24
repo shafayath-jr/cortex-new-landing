@@ -82,7 +82,7 @@ export function Footer() {
             </span>
             <a
               href="mailto:Contact@cortexgrip.com"
-              className="font-fraunces text-3xl md:text-[34px] font-bold text-[#2E0D05] hover:text-coral-500 transition-all duration-300 tracking-tight hover:scale-[1.01] inline-block origin-left lg:origin-right"
+              className="font-fraunces text-2xl md:text-[34px] font-bold text-[#2E0D05] hover:text-coral-500 transition-all duration-300 tracking-tight hover:scale-[1.01] inline-block origin-left lg:origin-right"
             >
               Contact@cortexgrip.com
             </a>

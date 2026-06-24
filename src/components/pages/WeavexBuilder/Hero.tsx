@@ -28,7 +28,7 @@ export function Hero() {
             {/* Badge */}
             <Badge text="AI Website Builder" className="w-fit" />
 
-            <h1 className="font-fraunces text-4xl font-bold leading-[1.06] text-[#2e0d05] sm:text-5xl md:text-6xl lg:text-[66px]">
+            <h1 className="font-fraunces font-bold  text-[#2E0D05] leading-10 md:leading-19 tracking-normal text-4xl sm:text-5xl md:text-6xl xl:text-[66px]">
               Describe it. Watch it build.{" "}
               <span className="text-coral-500">Weavex</span>
             </h1>

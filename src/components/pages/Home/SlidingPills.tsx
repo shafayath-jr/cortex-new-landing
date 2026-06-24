@@ -69,7 +69,7 @@ export function SlidingPills() {
 
   return (
     <div
-      className="relative h-92.5 w-[320px] overflow-hidden font-figtree select-none flex justify-center"
+      className="absolute -bottom-2 -left-14 md:left-1/4 md:bottom-5 lg:left-[-35%] lg:bottom-18 xl:left-[20%] xl:bottom-20 2xl:left-[50%] h-92.5 w-[320px] overflow-hidden font-figtree select-none flex justify-center"
       style={{
         maskImage:
           "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",

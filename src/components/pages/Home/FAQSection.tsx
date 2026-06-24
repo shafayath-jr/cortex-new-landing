@@ -1,12 +1,12 @@
 "use client";
 
+import { Badge } from "@/components/shared/Badge";
 import Bounded from "@/components/shared/Bounded";
 import QuestionMarkIcon from "@/components/ui/icons/QuestionMarkIcon";
 import { motion, type Variants } from "motion/react";
 import Link from "next/link";
 import { useState } from "react";
 import { LuMinus, LuPlus } from "react-icons/lu";
-import { Badge } from "@/components/shared/Badge";
 
 const FAQS = [
   {
@@ -78,7 +78,7 @@ export function FAQSection() {
               <Badge text="FAQ's" />
 
               {/* Heading */}
-              <h2 className="font-fraunces font-bold text-[#221C19] leading-13 text-4xl sm:text-5xl lg:text-[42px] tracking-normal my-4">
+              <h2 className="font-fraunces font-bold text-[#221C19] leading-12 md:leading-13 text-4xl sm:text-5xl lg:text-[48px] tracking-normal my-4">
                 Questions, <span className="text-coral-500">answered</span>
               </h2>
             </motion.div>

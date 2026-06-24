@@ -1,9 +1,9 @@
 "use client";
 
+import { Badge } from "@/components/shared/Badge";
 import Bounded from "@/components/shared/Bounded";
 import { motion, useScroll, useSpring, useTransform } from "motion/react";
 import { useRef } from "react";
-import { Badge } from "@/components/shared/Badge";
 
 const STEPS = [
   {
@@ -64,9 +64,9 @@ export function HowItWorks() {
         className="sticky top-0 min-h-screen flex flex-col justify-center"
       >
         {/* Title — compact so 3 cards fit alongside it inside the pinned frame */}
-        <div className="w-full flex flex-col items-center shrink-0 pt-4">
-          <Badge text="How it works" className="py-1.5" />
-          <h2 className="font-fraunces font-bold text-center text-[#221C19] leading-tight text-3xl sm:text-4xl lg:text-[40px] tracking-normal mt-3">
+        <div className="w-full flex flex-col items-center shrink-0 pt-4 text-center">
+          <Badge text="How it works" className="w-fit" />
+          <h2 className="font-fraunces font-bold text-[#221C19] leading-12 md:leading-13 text-4xl sm:text-5xl lg:text-[48px] tracking-normal mt-4">
             Online in <span className="text-coral-500">three easy steps</span>
           </h2>
         </div>

@@ -58,7 +58,7 @@ export function WhyItMattersSection({
         <div className="mb-8 flex flex-col items-center gap-4">
           <Badge text={badgeText} className="w-fit" />
           <h2
-            className="text-center font-fraunces text-[40px] font-bold leading-normal text-[#221c19] sm:text-[48px]"
+            className="text-center font-fraunces font-bold text-[#221C19] leading-12 md:leading-13 text-4xl sm:text-5xl lg:text-[48px] tracking-normal"
             style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}
           >
             {title}

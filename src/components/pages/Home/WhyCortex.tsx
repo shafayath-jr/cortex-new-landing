@@ -1,5 +1,6 @@
 "use client";
 
+import { Badge } from "@/components/shared/Badge";
 import Bounded from "@/components/shared/Bounded";
 import FlameIcon from "@/components/ui/icons/FlameIcon";
 import { cn } from "@/lib/utils";
@@ -13,7 +14,6 @@ import {
 } from "motion/react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { Badge } from "@/components/shared/Badge";
 
 const FEATURES = [
   {
@@ -226,7 +226,7 @@ export function WhyCortex() {
             {/* Heading */}
             <motion.h2
               variants={revealItem}
-              className="font-fraunces font-bold text-[#221C19] leading-13 text-4xl sm:text-5xl lg:text-[48px] tracking-normal my-4"
+              className="font-fraunces font-bold text-[#221C19] leading-12 md:leading-13 text-4xl sm:text-5xl lg:text-[48px] tracking-normal my-4"
             >
               Made for people,{" "}
               <span className="text-coral-500">not techies</span>
@@ -286,7 +286,10 @@ export function WhyCortex() {
                     layout
                     transition={{
                       layout: { duration: 0.38, ease: [0.16, 1, 0.3, 1] },
-                      backgroundColor: { duration: 0.38, ease: [0.16, 1, 0.3, 1] },
+                      backgroundColor: {
+                        duration: 0.38,
+                        ease: [0.16, 1, 0.3, 1],
+                      },
                       boxShadow: { duration: 0.38, ease: [0.16, 1, 0.3, 1] },
                     }}
                   >
@@ -318,7 +321,10 @@ export function WhyCortex() {
                             ease: [0.16, 1, 0.3, 1],
                             delay: isActive ? 0.02 : 0,
                           },
-                          marginTop: { duration: 0.38, ease: [0.16, 1, 0.3, 1] },
+                          marginTop: {
+                            duration: 0.38,
+                            ease: [0.16, 1, 0.3, 1],
+                          },
                         }}
                         className="overflow-hidden"
                       >

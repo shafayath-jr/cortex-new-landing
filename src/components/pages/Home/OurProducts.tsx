@@ -77,7 +77,7 @@ export function OurProducts() {
             className="flex flex-col items-center text-center"
           >
             <Badge text="Our Products" />
-            <h2 className="mt-4 font-fraunces text-4xl sm:text-5xl font-bold tracking-tight text-[#2E0D05]">
+            <h2 className="mt-4 font-fraunces font-bold text-[#221C19] leading-12 md:leading-13 text-4xl sm:text-5xl lg:text-[48px] tracking-normal">
               Everything you need,{" "}
               <span className="text-coral-500">in one place</span>
             </h2>

@@ -73,7 +73,7 @@ export function FaqSection() {
         {/* Header */}
         <div className="flex flex-col items-center gap-4 text-center">
           <Badge text="FAQ's" className="w-fit" />
-          <h2 className="font-fraunces text-[38px] font-bold leading-normal text-[#221c19] sm:text-[42px]">
+          <h2 className="font-fraunces font-bold text-[#221C19] leading-12 md:leading-13 text-4xl sm:text-5xl lg:text-[48px] tracking-normal">
             Questions, <span className="text-coral-500">answered</span>
           </h2>
         </div>

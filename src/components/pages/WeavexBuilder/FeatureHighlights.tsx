@@ -1,9 +1,9 @@
 "use client";
 
-import { motion } from "motion/react";
 import { Badge } from "@/components/shared/Badge";
 import Bounded from "@/components/shared/Bounded";
 import { ProductCard } from "@/components/shared/ProductCard";
+import { motion } from "motion/react";
 
 const FEATURES = [
   {
@@ -90,7 +90,7 @@ export function FeatureHighlights() {
           </motion.div>
           <motion.h2
             variants={fadeUpVariants}
-            className="font-fraunces font-bold text-[#221C19] text-4xl sm:text-5xl mt-4 mb-6"
+            className="font-fraunces font-bold text-[#221C19] leading-12 md:leading-13 text-4xl sm:text-5xl lg:text-[48px] tracking-normal mt-4 mb-6"
             style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}
           >
             Everything you need,{" "}

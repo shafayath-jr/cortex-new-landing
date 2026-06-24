@@ -3,9 +3,9 @@
 import { Badge } from "@/components/shared/Badge";
 import Bounded from "@/components/shared/Bounded";
 import RightArrowIcon from "@/components/ui/icons/RightArrowIcon";
+import { checkDomains } from "@/lib/domain";
 import Link from "next/link";
 import { useState } from "react";
-import { checkDomains } from "@/lib/domain";
 
 // ── Domain generation ────────────────────────────────────────────────────
 const TLDS = [
@@ -142,7 +142,7 @@ export function DomainsHero() {
       const mappedDomains = TLDS.map(({ ext, price }) => {
         const fullDomainName = slug + ext;
         const apiResult = results.find(
-          (r) => r.domain.toLowerCase() === fullDomainName.toLowerCase()
+          (r) => r.domain.toLowerCase() === fullDomainName.toLowerCase(),
         );
 
         return {
@@ -186,7 +186,7 @@ export function DomainsHero() {
           <div className="flex flex-col items-center gap-4">
             <Badge text="Domains" className="w-fit" />
 
-            <h1 className="max-w-[802px] font-fraunces text-5xl font-bold lg:leading-19 text-[#2e0d05] md:text-6xl lg:text-[66px]">
+            <h1 className="max-w-[802px] font-fraunces font-bold  text-[#2E0D05] leading-10 md:leading-19 tracking-normal text-4xl sm:text-5xl md:text-6xl lg:text-[66px]">
               Find a name that&apos;s{" "}
               <span className="text-coral-500">yours everywhere</span>
             </h1>
@@ -239,9 +239,24 @@ export function DomainsHero() {
                 >
                   {isLoading ? (
                     <span className="flex items-center gap-1.5">
-                      <svg className="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                      <svg
+                        className="animate-spin h-4 w-4 text-white"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        />
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        />
                       </svg>
                       Checking
                     </span>
@@ -261,7 +276,9 @@ export function DomainsHero() {
                       <span className="absolute inline-flex h-12 w-12 rounded-full bg-coral-500/20 opacity-75 animate-ping"></span>
                       <div className="size-8 rounded-full border-4 border-coral-500 border-t-transparent animate-spin"></div>
                     </div>
-                    <p className="font-figtree text-sm font-semibold text-[#2e0d05]">Querying domains...</p>
+                    <p className="font-figtree text-sm font-semibold text-[#2e0d05]">
+                      Querying domains...
+                    </p>
                   </div>
                 </div>
               )}
@@ -270,12 +287,22 @@ export function DomainsHero() {
               {error && (
                 <div className="rounded-xl bg-red-50 border border-red-200/60 p-4 text-red-800 font-figtree text-sm flex items-center justify-between shadow-sm">
                   <div className="flex items-center gap-2">
-                    <svg className="size-5 text-red-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    <svg
+                      className="size-5 text-red-500 shrink-0"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                      />
                     </svg>
                     <span>{error} (Fallback simulation loaded)</span>
                   </div>
-                  <button 
+                  <button
                     onClick={() => setError(null)}
                     className="text-red-500 hover:text-red-700 font-medium transition-colors"
                   >

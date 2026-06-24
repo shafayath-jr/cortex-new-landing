@@ -191,7 +191,7 @@ export function TemplateTeaser() {
         <div className="flex flex-1 flex-col items-start gap-5">
           <div className="flex flex-col gap-4">
             <Badge text="Template Teaser" className="w-fit" />
-            <h2 className="font-fraunces text-4xl font-bold leading-normal text-[#221c19] sm:text-5xl lg:text-[48px]">
+            <h2 className="font-fraunces font-bold text-[#221C19] leading-12 md:leading-13 text-4xl sm:text-5xl lg:text-[48px] tracking-normal">
               Prefer to start{" "}
               <span className="text-coral-500">from a design?</span>
             </h2>

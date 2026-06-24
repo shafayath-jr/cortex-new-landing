@@ -1,9 +1,9 @@
 "use client";
 
 import Bounded from "@/components/shared/Bounded";
+import { checkDomains } from "@/lib/domain";
 import { useEffect, useRef, useState } from "react";
 import { LuCheck, LuLoader } from "react-icons/lu";
-import { checkDomains } from "@/lib/domain";
 
 // Domain extensions to check
 const DOMAIN_EXTENSIONS = [
@@ -77,7 +77,9 @@ export function NameChecker() {
   const [isSearching, setIsSearching] = useState(false);
   const [revealResults, setRevealResults] = useState(true);
   const [staggerCount, setStaggerCount] = useState(8);
-  const [domainResults, setDomainResults] = useState<Record<string, "available" | "taken">>({});
+  const [domainResults, setDomainResults] = useState<
+    Record<string, "available" | "taken">
+  >({});
   const staggerTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   // Format clean query for display: remove spaces and special characters, keep lowercase
@@ -103,7 +105,8 @@ export function NameChecker() {
       const resultsMap: Record<string, "available" | "taken"> = {};
       results.forEach((r) => {
         const extItem = DOMAIN_EXTENSIONS.find(
-          (item) => `${slug}${item.ext}`.toLowerCase() === r.domain.toLowerCase()
+          (item) =>
+            `${slug}${item.ext}`.toLowerCase() === r.domain.toLowerCase(),
         );
         if (extItem) {
           resultsMap[extItem.type] = r.available ? "available" : "taken";
@@ -159,7 +162,7 @@ export function NameChecker() {
           </div>
 
           {/* Heading */}
-          <h2 className="font-fraunces font-bold text-[#221C19] leading-13 text-4xl sm:text-5xl lg:text-[48px] tracking-normal my-4">
+          <h2 className="font-fraunces font-bold text-[#221C19] leading-12 md:leading-13 text-4xl sm:text-5xl lg:text-[48px] tracking-normal my-4">
             <span className="text-coral-500">Get a name</span> that works
             everywhere
           </h2>
@@ -216,7 +219,9 @@ export function NameChecker() {
                   const isChecking = isSearching || !isVisible;
 
                   // Compute availability from API results with deterministic fallback
-                  const status = domainResults[item.type] || getDeterministicStatus(queryName, item.type);
+                  const status =
+                    domainResults[item.type] ||
+                    getDeterministicStatus(queryName, item.type);
 
                   return (
                     <div

@@ -442,7 +442,7 @@ export function WhyItMatters() {
             <Badge text="Why it matters" className="w-fit" />
 
             <h2
-              className="font-fraunces text-[40px] font-bold lg:leading-12.5 sm:text-[48px] text-[#2e0d05] lg:max-w-137"
+              className="font-fraunces font-bold text-[#221C19] leading-12 md:leading-13 text-4xl sm:text-5xl lg:text-[48px] tracking-normal lg:max-w-137"
               style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}
             >
               <span className="text-coral-500">One name, everywhere</span>{" "}

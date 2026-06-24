@@ -161,7 +161,7 @@ export function HowItWorks() {
         {/* Header */}
         <div className="flex flex-col items-center gap-4 text-center">
           <Badge text="How it works" />
-          <h2 className="font-fraunces text-4xl font-semibold leading-normal text-[#221c19] sm:text-5xl lg:text-[48px]">
+          <h2 className="font-fraunces font-bold text-[#221C19] leading-12 md:leading-13 text-4xl sm:text-5xl lg:text-[48px] tracking-normal">
             From idea to website{" "}
             <span className="text-coral-500">in minutes</span>
           </h2>

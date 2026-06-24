@@ -64,7 +64,7 @@ export function HostingHero() {
 
           {/* Heading */}
           <h1
-            className="font-fraunces text-[56px] font-bold leading-[1.06] text-[#2e0d05] sm:text-[58px] lg:text-[60px] xl:text-[72px]"
+            className="font-fraunces font-bold  text-[#2E0D05] leading-10 md:leading-19 tracking-normal text-4xl sm:text-5xl md:text-6xl lg:text-[66px]"
             style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}
           >
             Hosting that keeps you{" "}

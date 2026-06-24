@@ -36,10 +36,10 @@ export function Security() {
           {/* Badge */}
           <Badge text="Why it matters" className="w-fit" />
 
-          <h1 className="font-fraunces text-4xl font-bold leading-[1.06] text-[#2e0d05] sm:text-5xl md:text-6xl lg:text-[66px]">
+          <h2 className="font-fraunces font-bold text-[#221C19] leading-12 md:leading-13 text-4xl sm:text-5xl lg:text-[48px] tracking-normal">
             Built-in security,{" "}
             <span className="text-coral-500">on every site</span>
-          </h1>
+          </h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
           {SECURITY_CARDS.length > 0 &&

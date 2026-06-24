@@ -132,10 +132,11 @@ export function Hero() {
 
         {/* Right Column (Visual Image + Sliding Carousel overlay) */}
         <div className="relative flex flex-1 w-full items-center justify-center select-none z-30">
+          <div className="relative h-92.5 w-[320px] flex justify-center" />
           <SlidingPills />
         </div>
       </Bounded>
-      <div className="absolute bottom-0 -right-1/30 w-full aspect-[1.46] max-w-[550px] lg:max-w-[620px] transition-all duration-500 z-20">
+      <div className="absolute bottom-0 -right-7 sm:-right-9 lg:-right-10 w-full aspect-[1.46] max-w-[550px] lg:max-w-[620px] transition-all duration-500 z-30">
         <Image
           src="/images/homePage/HeroImage.png"
           alt="Cortex Grip Workspace workflow illustration"

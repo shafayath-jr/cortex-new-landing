@@ -2,10 +2,10 @@
 
 import { Badge } from "@/components/shared/Badge";
 import Bounded from "@/components/shared/Bounded";
-import { useState } from "react";
+import RightArrowIcon from "@/components/ui/icons/RightArrowIcon";
 import { checkDomains } from "@/lib/domain";
 import type { DomainEnding } from "@/lib/domain-endings";
-import RightArrowIcon from "@/components/ui/icons/RightArrowIcon";
+import { useState } from "react";
 
 const RELATED: Record<string, string[]> = {
   "co.uk": [".com", ".uk"],
@@ -61,7 +61,11 @@ function XIcon({ className }: { className?: string }) {
       stroke="currentColor"
       strokeWidth={2.5}
     >
-      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M6 18L18 6M6 6l12 12"
+      />
     </svg>
   );
 }
@@ -134,20 +138,20 @@ export function EndingDetailHero({ ending }: { ending: DomainEnding }) {
         allExts.map((ext) => {
           const fullName = slug + ext;
           const found = apiResults.find(
-            (r) => r.domain.toLowerCase() === fullName.toLowerCase()
+            (r) => r.domain.toLowerCase() === fullName.toLowerCase(),
           );
           return {
             name: fullName,
             available: found ? found.available : isAvailableSim(slug, ext),
           };
-        })
+        }),
       );
     } catch {
       setResults(
         allExts.map((ext) => ({
           name: slug + ext,
           available: isAvailableSim(slug, ext),
-        }))
+        })),
       );
     } finally {
       setIsLoading(false);
@@ -165,11 +169,14 @@ export function EndingDetailHero({ ending }: { ending: DomainEnding }) {
         className="pointer-events-none absolute -left-52 top-[30%] size-[381px] rounded-full bg-coral-500/8 blur-[100px]"
       />
 
-      <Bounded as="div" className="relative flex flex-col items-center gap-[42px] py-[90px]">
+      <Bounded
+        as="div"
+        className="relative flex flex-col items-center gap-[42px] py-[90px]"
+      >
         <div className="flex w-full flex-col items-center gap-4 text-center">
           <Badge text="Domains" className="w-fit" />
 
-          <h1 className="font-fraunces text-4xl font-bold leading-[1.06] text-[#2e0d05] sm:text-5xl lg:text-[72px]">
+          <h1 className="font-fraunces font-bold  text-[#2E0D05] leading-10 md:leading-19 tracking-normal text-4xl sm:text-5xl md:text-6xl lg:text-[66px]">
             Register your{" "}
             <span className="text-coral-500">{ending.ext} domain</span>
           </h1>
