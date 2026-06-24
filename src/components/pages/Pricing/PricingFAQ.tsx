@@ -86,7 +86,7 @@ export function PricingFAQ() {
           </motion.div>
           <motion.h2
             variants={fadeUpVariants}
-            className="font-fraunces text-[38px] font-bold leading-normal text-[#221c19] sm:text-[42px]"
+            className="font-fraunces font-bold text-[#221C19] leading-12 md:leading-13 text-4xl sm:text-5xl lg:text-[48px] tracking-normal"
           >
             Questions, <span className="text-coral-500">answered</span>
           </motion.h2>

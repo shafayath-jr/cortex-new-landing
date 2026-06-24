@@ -184,7 +184,7 @@ export function PricingSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 items-stretch"
+          className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-y-8 gap-x-6 items-stretch"
         >
           {plans.map((plan, index) => {
             const price = isAnnual ? plan.priceAnnually : plan.priceMonthly;
@@ -207,7 +207,7 @@ export function PricingSection() {
               >
                 {/* Grow Card Floating Most Popular Badge */}
                 {plan.isPopular && (
-                  <div className="absolute -top-6 left-1/2 -translate-x-1/2 border-[3px] border-[#FEF8F6] bg-[linear-gradient(262deg,_#F24E29_28.84%,_#F4B53F_105.47%)] text-[#F6F6FE] text-[14px] font-fraunces font-semibold uppercase leading-4.5 tracking-normal px-7 py-3 rounded-full">
+                  <div className="absolute -top-5 sm:-top-6 left-1/2 -translate-x-1/2 border-[3px] border-[#FEF8F6] bg-[linear-gradient(262deg,_#F24E29_28.84%,_#F4B53F_105.47%)] text-[#F6F6FE] text-[12px] sm:text-[14px] font-fraunces font-semibold uppercase leading-4.5 tracking-normal px-7 py-2 sm:py-3 rounded-full">
                     Most Popular
                   </div>
                 )}
