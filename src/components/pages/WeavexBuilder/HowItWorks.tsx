@@ -170,10 +170,10 @@ export function HowItWorks() {
         {/* Steps timeline */}
         <div className="relative w-full max-w-201.5 mx-auto">
           {/* Connector arrows — desktop only */}
-          <ArrowEntry className="pointer-events-none absolute -left-24 top-10 hidden w-30 lg:block xl:-left-48 xl:w-38.75" />
-          <ArrowRight className="pointer-events-none absolute -right-20 top-[18%] hidden w-37.5 lg:block xl:-right-48 xl:w-53 rotate-180" />
-          <ArrowEntry className="pointer-events-none absolute -left-24 top-[44%] hidden w-30 lg:block xl:-left-48 xl:w-38.75" />
-          <ArrowRight className="pointer-events-none absolute -right-20 top-[68%] hidden w-37.5 lg:block xl:-right-48 xl:w-53 rotate-180" />
+          <ArrowEntry className="pointer-events-none absolute -left-30 top-10 hidden w-36 lg:block xl:-left-48 xl:w-38.75" />
+          <ArrowRight className="pointer-events-none absolute -right-20 top-[18%] hidden w-48 lg:block xl:-right-48 xl:w-53 rotate-180" />
+          <ArrowEntry className="pointer-events-none absolute -left-30 top-[44%] hidden w-36 lg:block xl:-left-48 xl:w-38.75" />
+          <ArrowRight className="pointer-events-none absolute -right-20 top-[68%] hidden w-48 lg:block xl:-right-48 xl:w-53 rotate-180" />
 
           <div className="flex flex-col gap-14 lg:gap-[70px]">
             {STEPS.map((step) => (

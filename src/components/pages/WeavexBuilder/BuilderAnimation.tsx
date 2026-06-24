@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Phase =
   | "prompt"
@@ -53,23 +53,23 @@ const PHASES: Phase[] = [
   "webpage-exit",
 ];
 
-type Pos = { x: number; y: number };
+type Pos = { xFrac: number; y: number };
 
-// prompt bar is vertically centered at y≈165 in the 330px container
-// "Learn more" button in row-2 right card ≈ x=390, y=206
+// xFrac = fraction of container width (0–1), designed at 468px
+// y = fixed pixels from top (container height is always 330px)
 const CURSOR_POS: Record<Phase, Pos> = {
-  prompt: { x: 305, y: 165 },
-  "cursor-to-arrow": { x: 436, y: 165 },
-  "arrow-click": { x: 436, y: 165 },
-  "prompt-exit": { x: 436, y: 165 },
-  "theme-enter": { x: 436, y: 80 },
-  "cursor-to-square": { x: 88, y: 172 },
-  "square-click": { x: 88, y: 172 },
-  "theme-exit": { x: 88, y: 172 },
-  "webpage-enter": { x: 88, y: 172 },
-  "cursor-to-webpage": { x: 388, y: 295 },
-  "webpage-click": { x: 388, y: 295 },
-  "webpage-exit": { x: 388, y: 295 },
+  prompt:               { xFrac: 0.651, y: 165 },
+  "cursor-to-arrow":    { xFrac: 0.932, y: 165 },
+  "arrow-click":        { xFrac: 0.932, y: 165 },
+  "prompt-exit":        { xFrac: 0.932, y: 165 },
+  "theme-enter":        { xFrac: 0.932, y: 80  },
+  "cursor-to-square":   { xFrac: 0.188, y: 172 },
+  "square-click":       { xFrac: 0.188, y: 172 },
+  "theme-exit":         { xFrac: 0.188, y: 172 },
+  "webpage-enter":      { xFrac: 0.188, y: 172 },
+  "cursor-to-webpage":  { xFrac: 0.829, y: 295 },
+  "webpage-click":      { xFrac: 0.829, y: 295 },
+  "webpage-exit":       { xFrac: 0.829, y: 295 },
 };
 
 function blockStyle(fromLeft: boolean, delay: number, visible: boolean): React.CSSProperties {
@@ -84,6 +84,18 @@ export function BuilderAnimation() {
   const [phase, setPhase] = useState<Phase>("prompt");
   const [promptIdx, setPromptIdx] = useState(0);
   const [typedText, setTypedText] = useState("");
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [containerWidth, setContainerWidth] = useState(468);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([entry]) => {
+      setContainerWidth(entry.contentRect.width);
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   // Phase state machine
   useEffect(() => {
@@ -171,7 +183,8 @@ export function BuilderAnimation() {
   };
 
   return (
-    <div className="relative h-[330px] w-full select-none">
+    <div className="flex w-full justify-center">
+    <div ref={containerRef} className="relative h-[330px] w-full max-w-[468px] select-none">
 
       {/* ── Prompt bar ── */}
       <div style={promptPanelStyle}>
@@ -408,7 +421,7 @@ export function BuilderAnimation() {
       <div
         className="pointer-events-none absolute z-50"
         style={{
-          left: pos.x,
+          left: pos.xFrac * containerWidth,
           top: pos.y,
           opacity: cursorVisible ? 1 : 0,
           transition:
@@ -435,6 +448,7 @@ export function BuilderAnimation() {
           />
         </svg>
       </div>
+    </div>
     </div>
   );
 }
